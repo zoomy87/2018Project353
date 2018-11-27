@@ -12,7 +12,7 @@ import java.sql.Connection;
  * @author ericz
  */
 public class DBName {
-    private static final String DBNAME= "jdbc:derby://localhost:1527/ProjectLinkedU";
+    private static final String DBNAME= "jdbc:derby://localhost:1527/Project353";
     private static final String DRIVER = "org.apache.derby.jdbc.ClientDriver";
     
     public static String getDBName(){

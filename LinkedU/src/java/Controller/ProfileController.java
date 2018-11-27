@@ -34,12 +34,14 @@ public class ProfileController {
         //System.out.println(user.getUsername());
         if (file != null)
         {
+            user= new User();
+            user.setUsername("ejzumba");
             DAO dao = new ImageDAO();
             //System.out.println(user.getUsername());
             imageId = dao.create(file, user.getUsername());
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
-            image.setImage((StreamedContent)dao.getOne(""+imageId));
+           // image.setImage((StreamedContent)dao.getOne(""+imageId));
         }
         return "index.xhtml";
     }

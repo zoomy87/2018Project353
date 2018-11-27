@@ -12,9 +12,10 @@ import java.util.ArrayList;
  * @author ericz
  */
 public interface DAO {
-    public int create(Object obj);
-    public int update(Object obj);
-    public Object getOne(String id);
-    public ArrayList getAll(String query, String id);
+    public int create(Object obj, String username);
+    public int update(Object obj, String username);
+    public Object getOne(Object id);
+    public ArrayList getAll(String username);
+    public void delete(Object obj, String username);
     
 }

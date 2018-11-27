@@ -15,6 +15,8 @@ import Model.User;
 
 import DAO.DAO;
 import DAO.ImageDAO;
+import Model.Image;
+import java.io.IOException;
 
 /**
  *
@@ -24,28 +26,27 @@ import DAO.ImageDAO;
 @SessionScoped
 public class ProfileController {
     private UploadedFile file;
-    private StreamedContent image;
+    private Image image;
     private int imageId;
     private User user;
     
-     public String upload()
-    {
+     public String upload() throws IOException {
         //System.out.println(user.getUsername());
         if (file != null)
         {
             DAO dao = new ImageDAO();
             //System.out.println(user.getUsername());
-            imageId = dao.create(file);
+            imageId = dao.create(file, user.getUsername());
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
-            image = (StreamedContent)dao.getOne(""+imageId);
+            image.setImage((StreamedContent)dao.getOne(""+imageId));
         }
-        return "profile.xhtml";
+        return "index.xhtml";
     }
      
     public void test(){
         DAO dao = new ImageDAO();
-        dao.create(new Object());
+        dao.create(new Object(), "hello");
     }
 
     public UploadedFile getFile() {
@@ -57,11 +58,11 @@ public class ProfileController {
     }
 
     public StreamedContent getImage() {
-        return image;
+        return image.getImage();
     }
 
     public void setImage(StreamedContent image) {
-        this.image = image;
+        this.image.setImage(image);
     }
 
     public int getImageId() {

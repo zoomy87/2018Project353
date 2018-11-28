@@ -108,8 +108,8 @@ public class UserDAO implements DAO {
     }
 
     @Override
-    public User getOne(Object Username) {
-        String username= (String) Username;
+    public User getOne(Object email) {
+        String emailQuery = (String) email;
         User retVal = null;
 
         try {
@@ -117,7 +117,7 @@ public class UserDAO implements DAO {
 
             String insertString;
             Statement stmt = DBConn.createStatement();
-            insertString = "select * from users where email ='" + username + "'";
+            insertString = "select * from users where email ='" + emailQuery + "'";
             ResultSet rs = stmt.executeQuery(insertString);
             if (rs.next()) {
                 retVal = new User();

@@ -83,7 +83,7 @@ public class LoginController {
 
     public void retriveUser() {
         DAOImpl = new UserDAO();
-        DAOUser = DAOImpl.getOne(model.getUsername());
+        DAOUser = DAOImpl.getOne(model.getEmail());
     }
 
     public String createUser() {

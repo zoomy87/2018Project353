@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">User ID</label>:
-                            <h:outputText value="#{loginController.DAOUser.userID}" />
+                            <h:outputText value="#{loginController.DAOUser.username}" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Password</label>:
@@ -52,11 +52,11 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Security Question</label>:
-                            <h:outputText value="#{loginController.DAOUser.question}" />
+                            <h:outputText value="#{loginController.DAOUser.secQues}" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Security Answer</label>: 
-                            <h:outputText value="#{loginController.DAOUser.answer}" />
+                            <h:outputText value="#{loginController.DAOUser.secAns}" />
                         </div>
                         <div class="row">
                             <div class="col-md-12">

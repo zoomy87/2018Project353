@@ -66,8 +66,7 @@ public class LoginController {
 
         if (pass.equals(model.getPassword())) {
             retVal = "LoginGood.xhtml";
-        }
-        if (!loginTries.containsKey(model.getEmail())) {
+        }else if (!loginTries.containsKey(model.getEmail())) {
             loginTries.put(model.getEmail(), x);
             FacesContext.getCurrentInstance().addMessage("login:inputPassword", new FacesMessage("Email or Password do not match"));
         } else {

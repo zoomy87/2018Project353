@@ -17,11 +17,13 @@
     <h:body>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <div class="container">
-            <div class="navbar navbar-inverse">
-                <div class="navbar-brand">
-                    DEMO
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="login.xhtml">LinkedU</a>
+                    </div>
                 </div>
-            </div>
+            </nav>
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
@@ -40,7 +42,7 @@
                             <h:inputText class="form-control input-sm" id="lName" value="#{loginController.model.lName}" > 
                                 <f:validateLength minimum="2" maximum="25" ></f:validateLength>
                             </h:inputText>
-                            <h:message class="error" for="fName" id="lNameError" style="color:red"/>
+                            <h:message class="error" for="lName" id="lNameError" style="color:red"/>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Username</label>

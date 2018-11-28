@@ -97,7 +97,6 @@ public class LoginController {
         if (isUserID) {
             FacesContext.getCurrentInstance().addMessage("signUp:userID", new FacesMessage("User ID is already taken"));
         }
-
         if (!isPasswordMatch) {
             FacesContext.getCurrentInstance().addMessage("signUp:password", new FacesMessage("Passwords do not match"));
         }
@@ -110,7 +109,6 @@ public class LoginController {
         }
 
         return response;
-//         
     }
 
     public String response() {

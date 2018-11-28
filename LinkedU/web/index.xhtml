@@ -7,16 +7,22 @@
         <title>Linked U Project</title>
     </h:head>
     <h:body>
-      <h:body>
-        <h:form enctype="multipart/form-data">
-            <p:growl id="messages" showDetail="true" />
+        <h:body>
+            <h:form enctype="multipart/form-data">
+                <p:growl id="messages" showDetail="true" />
 
-            <p:fileUpload value="#{profileController.file}" mode="simple" skinSimple="true"/>
-        
+                <p:fileUpload value="#{profileController.file}" mode="simple" skinSimple="true"/>
 
-            <p:commandButton value="Submit" ajax="false" actionListener="#{profileController.upload()}" />
-        </h:form>
-    </h:body>
+
+                <p:commandButton value="Submit" ajax="false" actionListener="#{profileController.upload()}" />
+            </h:form>
+            <iframe
+                width="600"
+                height="450"
+                frameborder="0" style="border:0"
+                src="#{profileController.universityReturn()}"  allowfullscreen="true">
+            </iframe>
+        </h:body>
     </h:body>
 </html>
 

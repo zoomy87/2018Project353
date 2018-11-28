@@ -39,8 +39,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <h3 class="text-center">Login Successful</h3>
-                    <h3 class="text-center">Welcome <h:outputText value="#{loginController.DAOUser.fName}" />, <h:outputText value="#{loginController.DAOUser.lName}" /></h3>
+                    <h3 class="text-center"><h:outputText value="#{loginController.DAOUser.fName}" />, <h:outputText value="#{loginController.DAOUser.lName}" /></h3>
                     <hr />
                     <h:form>
                         <div class="form-group">
@@ -73,10 +72,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h:commandButton class="btn btn-default btn-block btn-sm btn-info" value="Back" action="login?redirect=true"  />
+                                <h:commandButton class="btn btn-default btn-block btn-sm btn-info" value="Update" action="update?redirect=true"/>
                             </div>
                             <div class="col-md-12">
-                                <h:commandButton class="btn btn-default btn-block btn-sm btn-success" value="Update" action="update?redirect=true"/>
+                                <h:commandButton class="btn btn-default btn-block btn-sm btn-danger" value="Logout" action="login?redirect=true"/>
                             </div>
                         </div>
                     </h:form>

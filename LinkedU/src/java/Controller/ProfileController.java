@@ -39,21 +39,27 @@ public class ProfileController {
     }
      public String upload() throws IOException {
         //System.out.println(user.getUsername());
-        if(file== null){
-            System.out.println("ProfileController: NULL");}
+        
         if (file != null)
         {
             user= new User();
             user.setUsername("ejzumba");
+            this.image= new Image();
             DAO dao = new ImageDAO();
             //System.out.println(user.getUsername());
             imageId = dao.create(file, user.getUsername());
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
-            image= (Image) dao.getOne(imageId);
+            this.image= (Image) dao.getOne(""+imageId);
            // image.setImage((StreamedContent)dao.getOne(""+imageId));
+        
+            return "display.xhtml";
+        }else{
+            FacesMessage message = new FacesMessage("Unsuccesful", "File not uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            return "";
         }
-        return "display.xhtml";
+            
     }
      
     public String test(){

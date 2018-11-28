@@ -17,7 +17,10 @@ import DAO.DAO;
 import DAO.ImageDAO;
 import DAO.UniDAO;
 import Model.Image;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import javax.faces.event.PhaseId;
+import org.primefaces.model.DefaultStreamedContent;
 
 /**
  *
@@ -31,20 +34,34 @@ public class ProfileController {
     private Image image;
     private int imageId;
     private User user;
-
-    public String upload() throws IOException {
+    
+    
+    public ProfileController(){
+        image= new Image();
+    }
+     public String upload() throws IOException {
         //System.out.println(user.getUsername());
-        if (file != null) {
-            user = new User();
-            user.setUsername("test");
+        
+        if (file != null)
+        {
+            user= new User();
+            user.setUsername("ejzumba");
+            this.image= new Image();
             DAO dao = new ImageDAO();
             //System.out.println(user.getUsername());
             imageId = dao.create(file, user.getUsername());
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
-            // image.setImage((StreamedContent)dao.getOne(""+imageId));
+            this.image= (Image) dao.getOne(""+imageId);
+           // image.setImage((StreamedContent)dao.getOne(""+imageId));
+        
+            return "display.xhtml";
+        }else{
+            FacesMessage message = new FacesMessage("Unsuccesful", "File not uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            return "";
         }
-        return "index.xhtml";
+            
     }
 
     public String universityReturn(String uniId) {
@@ -55,9 +72,16 @@ public class ProfileController {
         return src;
     }
 
-    public void test() {
+    public String test() {
         DAO dao = new ImageDAO();
-        dao.create(new Object(), "hello");
+        Image i= (Image) dao.getOne(""+4);
+        image= i;
+        System.out.println(""+i.getImageId());
+        return "display.xhtml";
+//        if(i!= null){
+//            return i.getImage();
+//        }else
+//            return new DefaultStreamedContent();
     }
 
     public UploadedFile getFile() {

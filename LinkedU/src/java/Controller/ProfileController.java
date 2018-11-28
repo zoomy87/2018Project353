@@ -15,6 +15,7 @@ import Model.User;
 
 import DAO.DAO;
 import DAO.ImageDAO;
+import DAO.UniDAO;
 import Model.Image;
 import java.io.IOException;
 
@@ -25,28 +26,36 @@ import java.io.IOException;
 @ManagedBean
 @SessionScoped
 public class ProfileController {
+
     private UploadedFile file;
     private Image image;
     private int imageId;
     private User user;
-    
-     public String upload() throws IOException {
+
+    public String upload() throws IOException {
         //System.out.println(user.getUsername());
-        if (file != null)
-        {
-            user= new User();
+        if (file != null) {
+            user = new User();
             user.setUsername("ejzumba");
             DAO dao = new ImageDAO();
             //System.out.println(user.getUsername());
             imageId = dao.create(file, user.getUsername());
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
-           // image.setImage((StreamedContent)dao.getOne(""+imageId));
+            // image.setImage((StreamedContent)dao.getOne(""+imageId));
         }
         return "index.xhtml";
     }
-     
-    public void test(){
+
+    public String universityReturn() {
+        String src;
+        String school;
+        DAO uniDB = new UniDAO();
+        src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBfcRh_4s3ZdcGnTdhGEWnSjyghyoh7vc0&q=" + uniDB.getOne("1");
+        return src;
+    }
+
+    public void test() {
         DAO dao = new ImageDAO();
         dao.create(new Object(), "hello");
     }
@@ -82,7 +91,5 @@ public class ProfileController {
     public void setUser(User user) {
         this.user = user;
     }
-    
-    
-    
+
 }

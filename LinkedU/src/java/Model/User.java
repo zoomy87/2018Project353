@@ -16,7 +16,12 @@ public class User {
     private String secAns;
     private String email;
     private String phone;
-
+    private String fName;
+    private String lName;
+    private String userID;
+    private String confirmPassword;
+    private String activeId;
+    private String activeEmail;
     public String getUsername() {
         return username;
     }
@@ -63,6 +68,46 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public String getActiveId() {
+        return activeId;
+    }
+
+    public void setActiveId(String activeId) {
+        this.activeId = activeId;
+    }
+
+    public String getActiveEmail() {
+        return activeEmail;
+    }
+
+    public void setActiveEmail(String activeEmail) {
+        this.activeEmail = activeEmail;
     }
     
 }

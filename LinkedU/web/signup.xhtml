@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <h:head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+
+    </h:head>
+
+    <h:body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    DEMO
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h3 class="text-center">Sign Up</h3>
+                    <hr />
+                    <h:form id="signUp">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">First Name</label>
+                            <h:inputText class="form-control input-sm" id="fName" value="#{loginController.model.fName}"> 
+                                <f:validateLength minimum="2" maximum="25"></f:validateLength>
+                            </h:inputText>
+                            <h:message class="error" for="fName" id="fNameError" style="color:red"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Last Name</label>
+                            <h:inputText class="form-control input-sm" id="lName" value="#{loginController.model.lName}" > 
+                                <f:validateLength minimum="2" maximum="25" ></f:validateLength>
+                            </h:inputText>
+                            <h:message class="error" for="fName" id="lNameError" style="color:red"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">User ID</label>
+                            <h:inputText class="form-control input-sm" id="userID" value="#{loginController.model.userID}"/>
+                            <h:message class="error" for="userID" id="userIDError" style="color:red"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Password</label>
+                            <h:inputSecret class="form-control input-sm" id="password" value="#{loginController.model.password}" />
+                            <h:message class="error" for="password" id="confirmPasswordError" style="color:red"/>
+                        </div>
+                        <div class="form-group" id="cpass">
+                            <label for="exampleInputEmail1">Confirm Password</label>
+                            <h:inputSecret class="form-control input-sm" id="confirmPassword" value="#{loginController.model.confirmPassword}" /> 
+                            <h:message class="error" for="password" id="passwordError" style="color:red"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <h:inputText class="form-control input-sm" id="email" value="#{loginController.model.email}"/>
+                            <h:message class="error" for="email" id="emailError" style="color:red"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Security Question</label>
+                            <h:inputText class="form-control input-sm" id="question" value="#{loginController.model.question}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Security Answer</label>
+                            <h:inputText class="form-control input-sm" id="answer" value="#{loginController.model.answer}" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h:commandButton class="btn btn-default btn-block btn-sm btn-info" value="Submit" action="#{loginController.createUser()}"  />
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+    <!--    <script lang="javascript">
+            $.ready(){
+                function confirmPass(){
+                    var pass= document.getElementById("password");
+                    var cpass= document.getElementById("confirmPassword");
+                    if(pass !== cpass){
+                        document.appendChild("Passwords do not match!")
+                    }
+                }
+                
+                $("#confirmPassword").keyup(confirmPass());
+            }
+        </script>-->
+</html>

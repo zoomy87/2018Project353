@@ -18,6 +18,7 @@ import DAO.ImageDAO;
 import DAO.UniDAO;
 import Model.Image;
 import java.io.IOException;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +32,9 @@ public class ProfileController {
     private Image image;
     private int imageId;
     private User user;
+    private final LoginController loginSession;
+    private final FacesContext facesContext;
+    private HttpSession session;
 
     public String upload() throws IOException {
         //System.out.println(user.getUsername());
@@ -46,6 +50,16 @@ public class ProfileController {
         }
         return "index.xhtml";
     }
+    
+    public ProfileController(){
+        facesContext = FacesContext.getCurrentInstance();
+        session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        loginSession = (LoginController) session.getAttribute("loginController");
+        user = loginSession.getModel();
+       //System.out.println("MediaController created");
+    }
+    
+    
 
     public String universityReturn(String uniId) {
         String src;

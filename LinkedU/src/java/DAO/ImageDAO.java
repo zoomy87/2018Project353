@@ -6,6 +6,7 @@
 package DAO;
 
 import Controller.UserController;
+import Model.Image;
 import com.oracle.webservices.api.message.PropertySet.Property;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +19,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -71,23 +73,140 @@ public class ImageDAO implements DAO{
     }
 
     @Override
-    public int update(Object obj, String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int update(Object File, String id) {
+        UploadedFile file= (UploadedFile)File;
+        
+        int rowCount = 0;
+        int imgID = -1;
+        
+        try
+        {
+            Connection DBConn= DBName.connect2DB();
+            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
+            String insert = "update IMAGES set IMAGE= ? where imageid= ?";
+                    
+            System.out.println("IMAGEDAOIMPL: " + insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setBinaryStream(1, file.getInputstream());
+            stmt.setString(2, id);
+            rowCount = stmt.executeUpdate();
+            if (rowCount == 1)
+            {
+                ResultSet rs = stmt.getGeneratedKeys();
+                if (rs.next())
+                {
+                    imgID = rs.getInt(1);
+                }
+
+//                userController.setProfilePictureId(imgID, username);
+                //System.out.println(imgID);
+            }
+
+            DBConn.close();
+        } 
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return imgID;
     }
 
     @Override
     public Object getOne(Object id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Image i= null;
+        
+        try
+        {
+            Connection DBConn= DBName.connect2DB();
+            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
+            String insert = "select image from IMAGES where imageid= ?";
+                    
+            System.out.println("IMAGEDAOIMPL: " + insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert);
+            stmt.setString(1, (String) id);
+           
+            ResultSet rs= stmt.executeQuery();
+            if (rs.next())
+            {
+                i= new Image();
+                i.setImage((StreamedContent) rs.getBinaryStream("image"));
+                i.setImageId(rs.getInt("imageid"));
+            }
+
+//                userController.setProfilePictureId(imgID, username);
+                //System.out.println(imgID);
+            
+
+            DBConn.close();
+        } 
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return (Object) i;
     }
 
     @Override
-    public ArrayList getAll(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList getAll(String userName) {
+        ArrayList<Image> list= new ArrayList<>();
+        try
+        {
+            Connection DBConn= DBName.connect2DB();
+            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
+            String insert = "select * from IMAGES where username= ?";
+                    
+            System.out.println("IMAGEDAO: " + insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert);
+            stmt.setString(1, userName);
+           
+            ResultSet rs= stmt.executeQuery();
+            while (rs.next())
+            {
+                Image i= new Image();
+                i.setImage((StreamedContent) rs.getBinaryStream("image"));
+                i.setImageId(rs.getInt("imageid"));
+                list.add(i);
+            }
+
+//                userController.setProfilePictureId(imgID, username);
+                //System.out.println(imgID);
+            
+
+            DBConn.close();
+        } 
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return list;
     }
 
     @Override
-    public void delete(Object obj, String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(Object img, String username) {
+        Image image= (Image) img;
+        try
+        {
+            Connection DBConn= DBName.connect2DB();
+            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
+            String insert = "delete from images where imageid= ?";
+                    
+            System.out.println("IMAGEDAO: " + insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert);
+            stmt.setString(1, ""+image.getImageId());
+           
+            int rowDeleted= stmt.executeUpdate();
+           
+
+//                userController.setProfilePictureId(imgID, username);
+                //System.out.println(imgID);
+            
+
+            DBConn.close();
+        } 
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 
    

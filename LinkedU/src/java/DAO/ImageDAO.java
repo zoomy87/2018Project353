@@ -8,9 +8,11 @@ package DAO;
 import Controller.UserController;
 import Model.Image;
 import com.oracle.webservices.api.message.PropertySet.Property;
+import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
@@ -19,6 +21,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
@@ -119,18 +122,21 @@ public class ImageDAO implements DAO{
         {
             Connection DBConn= DBName.connect2DB();
             //String type = file.getFileName().substring(file.getFileName().indexOf("."));
-            String insert = "select image from IMAGES where imageid= ?";
+            String insert = "select image, imageid from IMAGES where imageid= ?";
                     
             System.out.println("IMAGEDAOIMPL: " + insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);
-            stmt.setString(1, (String) id);
+            stmt.setString(1, ""+ id);
            
             ResultSet rs= stmt.executeQuery();
             if (rs.next())
             {
                 i= new Image();
-                i.setImage((StreamedContent) rs.getBinaryStream("image"));
+                System.out.println("imagDAO: assigning image");
+                i.setImage(new DefaultStreamedContent(new ByteArrayInputStream(rs.getBytes("image"))));
+                System.out.println("imageDAO: before id assigned");
                 i.setImageId(rs.getInt("imageid"));
+                System.out.println("imagDAO: "+i.getImageId());
             }
 
 //                userController.setProfilePictureId(imgID, username);
@@ -139,11 +145,11 @@ public class ImageDAO implements DAO{
 
             DBConn.close();
         } 
-        catch (Exception e)
+        catch (SQLException e)
         {
             System.err.println(e.getMessage());
         }
-        return (Object) i;
+        return i;
     }
 
     @Override
@@ -174,7 +180,7 @@ public class ImageDAO implements DAO{
 
             DBConn.close();
         } 
-        catch (Exception e)
+        catch (SQLException e)
         {
             System.err.println(e.getMessage());
         }
@@ -203,7 +209,7 @@ public class ImageDAO implements DAO{
 
             DBConn.close();
         } 
-        catch (Exception e)
+        catch (SQLException e)
         {
             System.err.println(e.getMessage());
         }

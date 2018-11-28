@@ -36,7 +36,7 @@ public class ProfileController {
         //System.out.println(user.getUsername());
         if (file != null) {
             user = new User();
-            user.setUsername("ejzumba");
+            user.setUsername("test");
             DAO dao = new ImageDAO();
             //System.out.println(user.getUsername());
             imageId = dao.create(file, user.getUsername());
@@ -47,11 +47,11 @@ public class ProfileController {
         return "index.xhtml";
     }
 
-    public String universityReturn() {
+    public String universityReturn(String uniId) {
         String src;
         String school;
         DAO uniDB = new UniDAO();
-        src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBfcRh_4s3ZdcGnTdhGEWnSjyghyoh7vc0&q=" + uniDB.getOne("1");
+        src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBfcRh_4s3ZdcGnTdhGEWnSjyghyoh7vc0&q=" + uniDB.getOne(uniId);
         return src;
     }
 

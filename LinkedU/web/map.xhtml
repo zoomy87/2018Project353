@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <h:head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td{
+                text-align: center;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="login.xhtml">LinkedU</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="LoginGood.xhtml">Profile</a></li>
+                        <li class="active"><a href="map.xhtml">School Map</a></li>
+                        <li><a href="#">Page 2</a></li>
+                    </ul>
+                <form class="navbar-form navbar-right" action="/action_page.php">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search"/>
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+                </div>
+            </nav>
+            <table style="width:100%">
+                <tr>
+                  <th>College</th>
+                  <th>Map</th> 
+                </tr>
+                <tr>
+                  <td>Harvard University</td>
+                  <td>
+                    <iframe
+                        width="400"
+                        height="300"
+                        frameborder="0" style="border:0"
+                        src="#{profileController.universityReturn(1)}"  allowfullscreen="true">
+                    </iframe>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Princeton University</td>
+                  <td>
+                    <iframe
+                        width="400"
+                        height="300"
+                        frameborder="0" style="border:0"
+                        src="#{profileController.universityReturn(2)}"  allowfullscreen="true">
+                    </iframe>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Illinois State University</td>
+                  <td>
+                    <iframe
+                        width="400"
+                        height="300"
+                        frameborder="0" style="border:0"
+                        src="#{profileController.universityReturn(3)}"  allowfullscreen="true">
+                    </iframe>
+                  </td>
+                </tr>
+                <tr>
+                  <td>University of Illinois at Chicago</td>
+                  <td>
+                    <iframe
+                        width="400"
+                        height="300"
+                        frameborder="0" style="border:0"
+                        src="#{profileController.universityReturn(4)}"  allowfullscreen="true">
+                    </iframe>
+                  </td>
+                </tr>
+                <tr>
+                  <td>University of Illinois at Urbana</td>
+                  <td>
+                    <iframe
+                        width="400"
+                        height="300"
+                        frameborder="0" style="border:0"
+                        src="#{profileController.universityReturn(5)}"  allowfullscreen="true">
+                    </iframe>
+                  </td>
+                </tr>
+            </table>
+        </div>
+    </h:body>
+</html>
+

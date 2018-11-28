@@ -22,6 +22,16 @@ public class User {
     private String confirmPassword;
     private String activeId;
     private String activeEmail;
+    private String userType;
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+    
     public String getUsername() {
         return username;
     }

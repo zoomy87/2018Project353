@@ -15,6 +15,7 @@ import Model.User;
 
 import DAO.DAO;
 import DAO.ImageDAO;
+import DAO.UniDAO;
 import Model.Image;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -28,6 +29,7 @@ import org.primefaces.model.DefaultStreamedContent;
 @ManagedBean
 @SessionScoped
 public class ProfileController {
+
     private UploadedFile file;
     private Image image;
     private int imageId;
@@ -61,8 +63,16 @@ public class ProfileController {
         }
             
     }
-     
-    public String test(){
+
+    public String universityReturn(String uniId) {
+        String src;
+        String school;
+        DAO uniDB = new UniDAO();
+        src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBfcRh_4s3ZdcGnTdhGEWnSjyghyoh7vc0&q=" + uniDB.getOne(uniId);
+        return src;
+    }
+
+    public String test() {
         DAO dao = new ImageDAO();
         Image i= (Image) dao.getOne(""+4);
         image= i;
@@ -105,7 +115,5 @@ public class ProfileController {
     public void setUser(User user) {
         this.user = user;
     }
-    
-    
-    
+
 }

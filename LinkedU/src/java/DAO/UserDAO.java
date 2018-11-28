@@ -34,7 +34,7 @@ public class UserDAO implements DAO {
             Connection DBConn = DBName.connect2DB();
 
             String insertString;
-            insertString = "INSERT INTO users (firstname, lastname, username, password, question, answer, email) VALUES (?,?,?,?,?,?,?)";
+            insertString = "INSERT INTO users (firstname, lastname, username, password, securityquestion, securityanswer, email, usertype) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = DBConn.prepareStatement(insertString);
             pstmt.setString(1, user.getfName());
             pstmt.setString(2, user.getlName());
@@ -43,6 +43,7 @@ public class UserDAO implements DAO {
             pstmt.setString(5, user.getSecQues());
             pstmt.setString(6, user.getSecAns());
             pstmt.setString(7, user.getEmail());
+            pstmt.setString(8, user.getUserType());
 
             rowCount = pstmt.executeUpdate();
             System.out.println("insert string =" + insertString +"rowCount: "+rowCount);
@@ -108,8 +109,8 @@ public class UserDAO implements DAO {
     }
 
     @Override
-    public User getOne(Object Username) {
-        String username= (String) Username;
+    public User getOne(Object email) {
+        String emailQuery = (String) email;
         User retVal = null;
 
         try {
@@ -117,7 +118,7 @@ public class UserDAO implements DAO {
 
             String insertString;
             Statement stmt = DBConn.createStatement();
-            insertString = "select * from users where email ='" + username + "'";
+            insertString = "select * from users where email ='" + emailQuery + "'";
             ResultSet rs = stmt.executeQuery(insertString);
             if (rs.next()) {
                 retVal = new User();

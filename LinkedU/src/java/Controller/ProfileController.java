@@ -56,7 +56,7 @@ public class ProfileController {
         if (file != null)
         {
             user= new User();
-            user.setUsername("ejzumba");
+            //user.setUsername("ejzumba");
             this.image= new Image();
             DAO dao = new ImageDAO();
             //System.out.println(user.getUsername());
@@ -128,5 +128,8 @@ public class ProfileController {
     public void setUser(User user) {
         this.user = user;
     }
-
+    
+    public String goToProfile(){
+        return "profile.xhtml?faces-redirect=true";
+    }
 }

@@ -56,8 +56,30 @@ public class UniDAO implements DAO {
     }
 
     @Override
-    public ArrayList getAll(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList getAll(String query) {
+        ArrayList retVal= new ArrayList<>();
+        try {
+            Connection DBConn = DBName.connect2DB();
+            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
+            String insert = "Select * From university Where username= ? ";
+
+            //System.out.println("IMAGEDAOIMPL: " + insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert);
+            stmt.setString(1, query);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String uniName = rs.getString("universityName");
+            }
+
+//                userController.setProfilePictureId(imgID, username);
+            //System.out.println(imgID);
+            DBConn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return retVal;
+
     }
 
     @Override
@@ -65,4 +87,10 @@ public class UniDAO implements DAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public ArrayList searchById(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 }

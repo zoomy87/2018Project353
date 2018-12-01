@@ -12,11 +12,11 @@ CREATE TABLE videos(
 --
 
 CREATE TABLE users(
-    userName VARCHAR(100),
+    USERNAME VARCHAR(200),
     password VARCHAR(100) NOT NULL,
     firstName VARCHAR(100) NOT NULL,
     lastName VARCHAR(100) NOT NULL,
-    email VARCHAR(100),
+    email VARCHAR(250),
     securityQuestion VARCHAR(100),
     securityAnswer VARCHAR(100),
     userType VARCHAR(20) NOT NULL,
@@ -30,7 +30,7 @@ ALTER TABLE USERS
 CREATE TABLE images(
     imageId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     image BLOB,
-    USERNAME VARCHAR(100),
+    USERNAME VARCHAR(200),
     CONSTRAINT images_imageId_pk PRIMARY KEY (imageId),
     CONSTRAINT images_USERNAME_fk FOREIGN KEY (USERNAME)
         REFERENCES USERS(userName));
@@ -51,7 +51,7 @@ CREATE TABLE student(
     psat VARCHAR(4),
     certification VARCHAR(500),
     essay VARCHAR(1200),
-    userName VARCHAR(100),
+    USERNAME VARCHAR(200),
     hobbies VARCHAR(500),
     CONSTRAINT student_profileId_pk PRIMARY KEY (profileId),
     CONSTRAINT student_username_fk  FOREIGN KEY (userName)
@@ -59,31 +59,42 @@ CREATE TABLE student(
 		
 
 CREATE TABLE universityschedule(
-    universityname VARCHAR(100),
+    universityname VARCHAR(200),
     date VARCHAR(100));
 		
 CREATE TABLE university(
-    profileId VARCHAR(50),
-    universityEmail VARCHAR(50),
-    username VARCHAR(100),
+    profileId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    universityEmail VARCHAR(250),
+    username VARCHAR(200),
     CONSTRAINT university_profileId_pk PRIMARY KEY (profileId),
     CONSTRAINT university_username_fk FOREIGN KEY (username)
         REFERENCES users(username));
 
+-- alter table universityBridge drop CONSTRAINT universityBridge_profileId_fk;
+-- alter table university drop CONSTRAINT university_profileId_pk;
+-- alter table university drop column profileId;
+-- alter table universityBridge drop column profileId;
+-- alter table universityBridge add column profileId Integer;
+-- alter table universityBridge add CONSTRAINT universityBridge_profileId_fk foreign key (profileId)
+--     references university(profileId);
+-- alter table university alter column universityEmail set data type varchar(150);
+
 CREATE TABLE universityBridge(
     bridgeId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-    profileId VARCHAR(50),
-    username VARCHAR(100),
+    profileId INTEGER,
+    USERNAME VARCHAR(200),
     CONSTRAINT universityBridge_bridgeId_pk PRIMARY KEY (bridgeId),
     CONSTRAINT universityBridge_profileId_fk FOREIGN KEY (profileId)
         REFERENCES university(profileId),
     CONSTRAINT universityBridge_username_fk FOREIGN KEY (username)
         REFERENCES users(username));
 
+
+
 CREATE TABLE recruiter(
     profileId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
     university VARCHAR(50),
-    username VARCHAR(100),
+    USERNAME VARCHAR(200),
     department VARCHAR(20),
     phone VARCHAR(13),
     CONSTRAINT recruiter_profileId_pk PRIMARY KEY (profileId),
@@ -99,7 +110,7 @@ CREATE TABLE major(
 CREATE TABLE majorBridge(
     bridgeId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     major VARCHAR(20),
-    username VARCHAR(100),
+    USERNAME VARCHAR(200),
     CONSTRAINT majorList_bridgeId_pk PRIMARY KEY (bridgeId),
     CONSTRAINT majorList_major_fk FOREIGN KEY (major)
         REFERENCES major(major),
@@ -109,7 +120,7 @@ CREATE TABLE majorBridge(
 	
 CREATE TABLE posts(
     postId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-    username VARCHAR(100),
+    USERNAME VARCHAR(200),
     imageId INTEGER,
     videoId INTEGER,
     datesTime TIMESTAMP default CURRENT_TIMESTAMP,

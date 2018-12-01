@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta charset="utf-8" />
@@ -17,7 +17,7 @@
 
     <h:body>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{profilecontroller.retriveUser()}" />
+         <!--   <f:event type="preRenderView" listener="#{profilecontroller.retriveUser()}" />-->
         </f:metadata>
         <div class="container">
             <nav class="navbar navbar-inverse">
@@ -35,14 +35,17 @@
                         <li><a href="map.xhtml">School Map</a></li>
                         <li><a href="#">Page 2</a></li>
                     </ul>
-                <form class="navbar-form navbar-right" action="/action_page.php">
+                <h:form class="navbar-form navbar-right"><!--action="/action_page.php-->
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search"/>
+                        <p:inputText placeholder="Search" id="searchInput" class="form-control" value="#{searchController.searchTopic}"/>
+                        <!--<input type="text" class="form-control" placeholder="Search"/>-->
                     </div>
-                    <button type="submit" class="btn btn-default">Search</button>
-                </form>
+                    <p:commandButton title="Search" class="btn btn-default" action="#{searchController.searchUserId()}"/>
+                    <!--<button type="submit" class="btn btn-default">Search</button>-->
+                </h:form>
                 </div>
             </nav>
+        </div>
     </h:body>
 </html>
 

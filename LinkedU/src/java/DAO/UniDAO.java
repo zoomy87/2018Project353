@@ -64,5 +64,10 @@ public class UniDAO implements DAO {
     public void delete(Object obj, String username) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    @Override
+    public Object getProfileUser(Object username){
+        return null;
+    }
 
 }

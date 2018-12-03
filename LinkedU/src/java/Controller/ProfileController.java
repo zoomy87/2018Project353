@@ -16,6 +16,7 @@ import Model.User;
 import DAO.DAO;
 import DAO.ImageDAO;
 import DAO.UniDAO;
+import DAO.UserDAO;
 import Model.Image;
 import Model.Profile;
 import java.io.ByteArrayInputStream;
@@ -35,15 +36,18 @@ public class ProfileController {
     private UploadedFile file;
     private Image image;
     private int imageId;
-    User user;
     private final LoginController loginSession;
     private final FacesContext facesContext;
     private final HttpSession session;
+    User user;
     Profile DAOProfile;
+    UserDAO DAOImpl;
+    
 
     
     public void retrieveProfile(){
-        DAOProfile.setfName(user.getfName());
+        DAOImpl = new UserDAO();
+        DAOProfile = DAOImpl.getProfileUser(user.getUsername());
     }
     
     public ProfileController(){
@@ -57,20 +61,15 @@ public class ProfileController {
     }
     
     public String upload() throws IOException {
-        //System.out.println(user.getUsername());
         
         if (file != null)
         {
-//            user= new User();
-//            user.setUsername("test");
             this.image= new Image();
             DAO dao = new ImageDAO();
-            //System.out.println(user.getUsername());
             imageId = dao.create(file, user.getUsername());
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
             this.image= (Image) dao.getOne(""+imageId);
-           // image.setImage((StreamedContent)dao.getOne(""+imageId));
         
             return "display.xhtml";
         }else{
@@ -97,10 +96,6 @@ public class ProfileController {
         image= i;
         System.out.println(""+i.getImageId());
         return "display.xhtml";
-//        if(i!= null){
-//            return i.getImage();
-//        }else
-//            return new DefaultStreamedContent();
     }
 
     public Profile getDAOProfile() {

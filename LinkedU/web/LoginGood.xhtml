@@ -86,13 +86,13 @@
                             </div>
                         </div>
                     </h:form>
-<h:form enctype="multipart/form-data">
-<p:growl id="messages" showDetail="true" />
+                    <h:form enctype="multipart/form-data">
+                        <p:growl id="messages" showDetail="true" />
 
-<p:fileUpload value="#{profileController.file}" mode="simple" skinSimple="true"/>
+                        <p:fileUpload value="#{profileController.file}" mode="simple" skinSimple="true"/>
 
-<p:commandButton value="Submit" ajax="false" action="#{profileController.upload()}" />
-</h:form>
+                        <p:commandButton value="Submit" ajax="false" action="#{profileController.upload()}" />
+                    </h:form>
                 </div>
             </div>
         </div>

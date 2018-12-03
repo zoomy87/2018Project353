@@ -43,6 +43,87 @@
                 </form>
                 </div>
             </nav>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h3 class="text-center"><h:outputText value="#{profileController.DAOProfile.fName}" />, <h:outputText value="#{profileController.DAOProfile.lName}" /></h3>
+                    <hr />
+                    <h:form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">User ID</label>:
+                            <h:outputText value="#{profileController.DAOProfile.username}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>:
+                            <h:outputText value="#{profileController.DAOProfile.email}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">DOB</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.dateOfBirth}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Height</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.height}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Weight (lbs)</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.weight}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Address</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.address}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Country</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.country}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Zip Code</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.zipcode}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Phone</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.phone}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">High School</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.school}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Graduation Date</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.endYear}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">SAT</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.sat}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">ACT</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.act}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">PSAT</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.psat}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Essay</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.essay}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Hobbies</label>: 
+                            <h:outputText value="#{profileController.DAOProfile.hobbies}" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h:commandButton class="btn btn-default btn-block btn-sm btn-info" value="Update" action="update?redirect=true"/>
+                            </div>
+                            <div class="col-md-12">
+                                <h:commandButton class="btn btn-default btn-block btn-sm btn-danger" value="Logout" action="login?redirect=true"/>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
         </div>
     </h:body>
 </html>

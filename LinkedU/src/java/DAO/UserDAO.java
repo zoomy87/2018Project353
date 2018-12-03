@@ -162,7 +162,7 @@ public class UserDAO implements DAO {
                 retVal.setActiveId(retVal.getUsername());
             }
         } catch (SQLException ex) {
-
+            log.info(ex.getMessage());
         }
         return retVal;
     }

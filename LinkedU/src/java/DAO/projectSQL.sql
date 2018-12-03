@@ -155,6 +155,18 @@ CREATE TABLE commentList(
     CONSTRAINT commentList_postId_fk FOREIGN KEY (postId)
         REFERENCES posts(postId));
 
+CREATE TABLE appointment(
+    appointmentId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    studentId INTEGER,
+    universityId INTEGER,
+    appntDate VARCHAR(28),
+    CONSTRAINT appointmentId_pk PRIMARY KEY(appointmentId),
+    CONSTRAINT appoinment_studentId_fk FOREIGN KEY(studentId)
+        REFERENCES STUDENT(PROFILEID),
+     CONSTRAINT appoinment_universityId_fk FOREIGN KEY(universityId)
+        REFERENCES UNIVERSITY (PROFILEID)    
+);
+
 CREATE TABLE ShowcaseUniversity(
 	ShowcaseID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
 	UniversityName VARCHAR(100),

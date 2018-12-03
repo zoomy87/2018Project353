@@ -15,7 +15,13 @@
 
             <p:commandButton value="Submit" ajax="false" action="#{profileController.upload()}" />
         </h:form>
-            
+         <h:form enctype="multipart/form-data">
+          <!--   <p:calendar id="button" value="#{universityController.date}" showOn="button" /><br></br>-->
+             <p:calendar id="datetime"  value="#{universityController.date}" stepMinute="15" pattern="MM/dd/yyyy h:mm a" /><br></br>
+             
+             <h:outputText value="#{universityController.dateString}"/>
+             <p:commandButton value="Date Submit" ajax="false" action="#{universityController.makeAppointment()}"/>
+        </h:form>    
     </h:body>
 </html>
 

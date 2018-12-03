@@ -17,6 +17,7 @@ import DAO.DAO;
 import DAO.ImageDAO;
 import DAO.UniDAO;
 import Model.Image;
+import Model.Profile;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import javax.faces.event.PhaseId;
@@ -34,29 +35,34 @@ public class ProfileController {
     private UploadedFile file;
     private Image image;
     private int imageId;
-    private User user;
+    User user;
     private final LoginController loginSession;
     private final FacesContext facesContext;
-    private HttpSession session;
+    private final HttpSession session;
+    Profile DAOProfile;
 
+    
+    public void retrieveProfile(){
+        DAOProfile.setfName(user.getfName());
+    }
     
     public ProfileController(){
         image= new Image();
+        user = new User();
+        DAOProfile = new Profile();
         facesContext = FacesContext.getCurrentInstance();
         session = (HttpSession) facesContext.getExternalContext().getSession(true);
         loginSession = (LoginController) session.getAttribute("loginController");
-        user = loginSession.getModel();
+        user = loginSession.getDAOUser();
     }
-    
-    
     
     public String upload() throws IOException {
         //System.out.println(user.getUsername());
         
         if (file != null)
         {
-            user= new User();
-            user.setUsername("ejzumba");
+//            user= new User();
+//            user.setUsername("test");
             this.image= new Image();
             DAO dao = new ImageDAO();
             //System.out.println(user.getUsername());
@@ -95,6 +101,14 @@ public class ProfileController {
 //            return i.getImage();
 //        }else
 //            return new DefaultStreamedContent();
+    }
+
+    public Profile getDAOProfile() {
+        return DAOProfile;
+    }
+
+    public void setDAOProfile(Profile DAOProfile) {
+        this.DAOProfile = DAOProfile;
     }
 
     public UploadedFile getFile() {

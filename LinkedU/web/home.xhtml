@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <h:head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </h:head>
+
+    <h:body>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{loginController.retriveUser()}" />
+            <f:event type="preRenderView" listener="#{profileController.retrieveProfile()}" />
+        </f:metadata>
+        <div class="container">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="home.xhtml">LinkedU</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class=" active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Me <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="profile.xhtml">Profile</a></li>
+                                <li><a href="account.xhtml">Account</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="map.xhtml">School Map</a></li>
+                        <li><a href="#">Page 2</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right" action="/action_page.php">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search"/>
+                        </div>
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </form>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col-md-2">
+                    <h3 class="text-center"><p:graphicImage id="imageId" value="#{profileController.image}" height="50px" width="75px"/><br/><h:outputText value="#{profileController.DAOProfile.fName}" />, <h:outputText value="#{profileController.DAOProfile.lName}" /></h3>
+                    <hr />
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        About Me</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <label for="exampleInputEmail1">User ID</label>:
+                                    <h:outputText value="#{profileController.DAOProfile.username}" /><br/>
+                                    <label for="exampleInputEmail1">Email</label>:
+                                    <h:outputText value="#{profileController.DAOProfile.email}" /><br/>
+                                    <label for="exampleInputEmail1">DOB</label>: 
+                                    <h:outputText value="#{profileController.DAOProfile.dateOfBirth}" /><br/>
+                                    <label for="exampleInputEmail1">Height</label>: 
+                                    <h:outputText value="#{profileController.DAOProfile.height}" /><br/>
+                                    <label for="exampleInputEmail1">Weight (lbs)</label>: 
+                                    <h:outputText value="#{profileController.DAOProfile.weight}" /><br/>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <h1>HOME</h1>
+                </div>
+                <div class="col-md-2">
+                    <h1>ADS</h1>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

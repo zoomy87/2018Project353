@@ -135,5 +135,8 @@ public class ProfileController {
     public void setUser(User user) {
         this.user = user;
     }
-
+    
+    public String goToProfile(){
+        return "profile.xhtml?faces-redirect=true";
+    }
 }

@@ -18,5 +18,7 @@ public interface DAO {
     public Object getProfileUser(Object id);
     public ArrayList getAll(String username);
     public void delete(Object obj, String username);
+    public ArrayList searchById(String id);
+    
     
 }

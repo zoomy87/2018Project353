@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Model.User;
+import Model.Profile;
 import java.util.ArrayList;
 
 /**
@@ -159,6 +160,51 @@ public class UserDAO implements DAO {
                 retVal.setSecQues(rs.getString("securityquestion"));
                 retVal.setSecAns(rs.getString("securityanswer"));
                 retVal.setEmail(rs.getString("email"));
+                retVal.setActiveId(retVal.getUsername());
+            }
+        } catch (SQLException ex) {
+
+        }
+        return retVal;
+    }
+    
+    @Override
+    public Profile getProfileUser(Object username) {
+        String usernameQuery = (String) username;
+        Profile retVal = null;
+
+        try {
+            Connection DBConn = DBName.connect2DB();
+
+            String insertString;
+            Statement stmt = DBConn.createStatement();
+            insertString = "SELECT * FROM users u INNER JOIN student s ON u.username = s.username WHERE u.username ='" + usernameQuery + "'";
+            ResultSet rs = stmt.executeQuery(insertString);
+            if (rs.next()) {
+                retVal = new Profile();
+                retVal.setUsername(rs.getString("username"));
+                retVal.setPassword(rs.getString("password"));
+                retVal.setfName(rs.getString("firstname"));
+                retVal.setlName(rs.getString("lastname"));
+                retVal.setEmail(rs.getString("email"));
+                retVal.setSecQues(rs.getString("securityquestion"));
+                retVal.setSecAns(rs.getString("securityanswer"));
+                retVal.setUserType(rs.getString("usertype"));
+                retVal.setDateOfBirth(rs.getString("dateofbirth"));
+                retVal.setHeight(rs.getInt("height"));
+                retVal.setWeight(rs.getInt("weight"));
+                retVal.setAddress(rs.getString("address"));
+                retVal.setCountry(rs.getString("country"));
+                retVal.setZipcode(rs.getString("zipcode"));
+                retVal.setPhone(rs.getString("phone"));
+                retVal.setSchool(rs.getString("school"));
+                retVal.setEndYear(rs.getInt("endyear"));
+                retVal.setSat(rs.getInt("sat"));
+                retVal.setAct(rs.getInt("act"));
+                retVal.setPsat(rs.getInt("psat"));
+                retVal.setCertification(rs.getString("certification"));
+                retVal.setEssay(rs.getString("essay"));
+                retVal.setHobbies(rs.getString("hobbies"));
                 retVal.setActiveId(retVal.getUsername());
             }
         } catch (SQLException ex) {

@@ -34,7 +34,7 @@ public class UserDAO implements DAO {
             Connection DBConn = DBName.connect2DB();
 
             String insertString;
-            insertString = "INSERT INTO users (firstname, lastname, username, password, question, answer, email) VALUES (?,?,?,?,?,?,?)";
+            insertString = "INSERT INTO users (firstname, lastname, username, password, securityquestion, securityanswer, email, usertype) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = DBConn.prepareStatement(insertString);
             pstmt.setString(1, user.getfName());
             pstmt.setString(2, user.getlName());
@@ -43,9 +43,10 @@ public class UserDAO implements DAO {
             pstmt.setString(5, user.getSecQues());
             pstmt.setString(6, user.getSecAns());
             pstmt.setString(7, user.getEmail());
+            pstmt.setString(8, user.getUserType());
 
             rowCount = pstmt.executeUpdate();
-            System.out.println("insert string =" + insertString +"rowCount: "+rowCount);
+            log.info("insert string =" + insertString +"rowCount: "+rowCount);
             DBConn.close();
         } catch (SQLException ex) {
             log.log(Level.SEVERE, null, ex);
@@ -54,8 +55,38 @@ public class UserDAO implements DAO {
     }
 
    @Override
-    public ArrayList getAll(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList getAll(String query) {
+        ArrayList<User> list= new ArrayList<>();
+        try
+        {
+            Connection DBConn= DBName.connect2DB();
+            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
+            String insert = "SELECT * FROM USERS";
+                    
+            log.info(insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert);
+            stmt.setString(1, query);
+           
+            ResultSet rs= stmt.executeQuery();
+            while (rs.next())
+            {
+                User i= new User();
+                i.setUsername(rs.getString("username"));
+                
+                list.add(i);
+            }
+
+//                userController.setProfilePictureId(imgID, username);
+                //System.out.println(imgID);
+            
+
+            DBConn.close();
+        } 
+        catch (SQLException e)
+        {
+            log.severe(e.getMessage());
+        }
+        return list;    
     }
 
     @Override
@@ -108,8 +139,8 @@ public class UserDAO implements DAO {
     }
 
     @Override
-    public User getOne(Object Username) {
-        String username= (String) Username;
+    public User getOne(Object email) {
+        String emailQuery = (String) email;
         User retVal = null;
 
         try {
@@ -117,7 +148,7 @@ public class UserDAO implements DAO {
 
             String insertString;
             Statement stmt = DBConn.createStatement();
-            insertString = "select * from users where email ='" + username + "'";
+            insertString = "select * from users where email ='" + emailQuery + "'";
             ResultSet rs = stmt.executeQuery(insertString);
             if (rs.next()) {
                 retVal = new User();
@@ -177,13 +208,50 @@ public class UserDAO implements DAO {
             pstmt.setString(8, user.getActiveId());
 
             rowCount = pstmt.executeUpdate();
-            System.out.println("insert string =" + insertString +"rowCount: "+rowCount);
+            log.info("insert string =" + insertString +"rowCount: "+rowCount);
             DBConn.close();
         } catch (SQLException ex) {
             log.log(Level.SEVERE, null, ex);
         }
         return rowCount;
     }
+
+    @Override
+    public ArrayList searchById(String id) {
+        ArrayList<User> list= new ArrayList<>();
+        try
+        {
+            Connection DBConn= DBName.connect2DB();
+            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
+            String insert = "SELECT * FROM ITKSTU.USERS WHERE LOWER(USERNAME) LIKE LOWER(?)";
+                    
+            log.info(insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert);
+            stmt.setString(1, "%"+id+"%");
+           
+            ResultSet rs= stmt.executeQuery();
+            log.info("inside SearchById");
+            while (rs.next())
+            {
+                User i= new User();
+                i.setUsername(rs.getString("username"));
+                
+                list.add(i);
+            }
+
+
+            
+
+            DBConn.close();
+        } 
+        catch (SQLException e)
+        {
+            log.severe(e.getMessage());
+        }
+        return list;
+
+    }
+    
     
     
     

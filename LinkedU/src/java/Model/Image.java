@@ -5,6 +5,7 @@
  */
 package Model;
 
+import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 /**
@@ -15,6 +16,10 @@ public class Image {
     private StreamedContent image;
     private int imageID;
 
+    public Image(){
+        image= new DefaultStreamedContent();
+    }
+    
     public StreamedContent getImage() {
         return image;
     }

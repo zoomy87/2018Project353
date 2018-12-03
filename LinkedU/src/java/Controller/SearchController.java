@@ -5,6 +5,11 @@
  */
 package Controller;
 
+import DAO.DAO;
+import DAO.UserDAO;
+import Model.User;
+import com.sun.istack.logging.Logger;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -15,5 +20,37 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class SearchController {
+    private String searchTopic;
+    private List<User> searchResults;
+    private static final Logger log= Logger.getLogger(SearchController.class);
+    
+    public SearchController(){
+     
+    }
+    
+    public String searchUserId(){
+        DAO userDAO= new UserDAO();
+        log.info(searchTopic);
+        searchResults= userDAO.searchById(searchTopic);
+        
+        return "SearchResults.xhtml";
+    }
+
+    public String getSearchTopic() {
+        return searchTopic;
+    }
+
+    public void setSearchTopic(String searchTopic) {
+        this.searchTopic = searchTopic;
+    }
+
+    public List<User> getSearchResults() {
+        return searchResults;
+    }
+
+    public void setSearchResults(List<User> searchResults) {
+        this.searchResults = searchResults;
+    }
+    
     
 }

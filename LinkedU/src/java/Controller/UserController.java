@@ -22,6 +22,7 @@ public class UserController implements Serializable {
      * Creates a new instance of NewJSFManagedBean
      */
     public UserController() {
+        
     }
     
 }

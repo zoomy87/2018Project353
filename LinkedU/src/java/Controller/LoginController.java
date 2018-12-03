@@ -65,9 +65,8 @@ public class LoginController {
         int x = 1;
 
         if (pass.equals(model.getPassword())) {
-            retVal = "LoginGood.xhtml";
-        }
-        if (!loginTries.containsKey(model.getEmail())) {
+            retVal = "LoginGoodResponse.xhtml";
+        }else if (!loginTries.containsKey(model.getEmail())) {
             loginTries.put(model.getEmail(), x);
             FacesContext.getCurrentInstance().addMessage("login:inputPassword", new FacesMessage("Email or Password do not match"));
         } else {
@@ -83,7 +82,7 @@ public class LoginController {
 
     public void retriveUser() {
         DAOImpl = new UserDAO();
-        DAOUser = DAOImpl.getOne(model.getUsername());
+        DAOUser = DAOImpl.getOne(model.getEmail());
     }
 
     public String createUser() {
@@ -98,7 +97,6 @@ public class LoginController {
         if (isUserID) {
             FacesContext.getCurrentInstance().addMessage("signUp:userID", new FacesMessage("User ID is already taken"));
         }
-
         if (!isPasswordMatch) {
             FacesContext.getCurrentInstance().addMessage("signUp:password", new FacesMessage("Passwords do not match"));
         }
@@ -111,7 +109,6 @@ public class LoginController {
         }
 
         return response;
-//         
     }
 
     public String response() {

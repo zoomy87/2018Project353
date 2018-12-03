@@ -79,8 +79,6 @@ public class ProfileController {
         }
             
     }
-    
-    
 
     public String universityReturn(String uniId) {
         String src;

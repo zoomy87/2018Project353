@@ -4,6 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <h:head>
         <title>Search Results</title>
         <meta charset="utf-8" />
@@ -13,6 +14,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style type="text/css">
+            .ui-datalist-item {
+                padding:10px;
+            }
+        </style>
     </h:head>
 
     <h:body>
@@ -56,29 +62,37 @@
 
 
 
-            <!--Paid Search Results?-->
-            <!--            <div class="col-md-1 m-0 p-0">
-                             <p:graphicImage value="#{profileController.image}" alt="UniAd1" height="150px" width="200px" class="img-thumbnail"/>
-                        </div>-->
+
+
+            <!--Image From Results-->
             <div class="col-md-3">
                 <div class="row">
-                    <p:graphicImage value="#{profileController.image}" alt="UniAd1" height="150px" width="200px" class="img-thumbnail"/>
+                    <div class="row"> <p:graphicImage value="#{profileController.image}" alt="UniAd1" height="50px" width="80px" class="img-thumbnail"/></div>
+                    <div class="row"> <p:graphicImage value="#{profileController.image}" alt="UniAd1" height="50px" width="80px" class="img-thumbnail"/></div>
+                    <div class="row"> <p:graphicImage value="#{profileController.image}" alt="UniAd1" height="50px" width="80px" class="img-thumbnail"/></div>
                 </div>
             </div>
 
             <!--Search Results-->
-         
+
             <div class="col-md-5">
                 <div class="row">
                     <h:form >
-                        <p:dataList value="#{searchController.searchResults}" var="user" >
+                        <p:dataList value="#{searchController.searchResults}" var="name" type="definition" >
+                            <f:facet name="header">
+                                Results Displayed
+                            </f:facet>
                             <p:commandLink action="#{profileController.goToProfile}" ajax="false">
-                                <h:outputText value="#{user.username}" />
+                                <p:column headerText="Sort" sortBy="#{name.username}">
+                                    <h:outputText value="#{name.username}" />
+                                </p:column>
+
                             </p:commandLink>
                         </p:dataList>
                     </h:form>
                 </div>
             </div>
+            <!--ADS-->
             <div class="col-md-4">
                 <h1>ADS go here</h1>
                 <h1>ADS go here</h1>

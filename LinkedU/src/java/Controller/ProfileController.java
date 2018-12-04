@@ -35,6 +35,7 @@ public class ProfileController {
 
     private UploadedFile file;
     private Image image;
+    private Image vidUrl;
     private int imageId;
     private final LoginController loginSession;
     private final FacesContext facesContext;
@@ -42,16 +43,15 @@ public class ProfileController {
     User user;
     Profile DAOProfile;
     UserDAO DAOImpl;
-    
 
-    
-    public void retrieveProfile(){
+    public void retrieveProfile() {
         DAOImpl = new UserDAO();
         DAOProfile = DAOImpl.getProfileUser(user.getUsername());
     }
-    
-    public ProfileController(){
-        image= new Image();
+
+    public ProfileController() {
+        image = new Image();
+        vidUrl = new Image();
         user = new User();
         DAOProfile = new Profile();
         facesContext = FacesContext.getCurrentInstance();
@@ -59,25 +59,24 @@ public class ProfileController {
         loginSession = (LoginController) session.getAttribute("loginController");
         user = loginSession.getDAOUser();
     }
-    
+
     public String upload() throws IOException {
-        
-        if (file != null)
-        {
-            this.image= new Image();
+
+        if (file != null) {
+            this.image = new Image();
             DAO dao = new ImageDAO();
             imageId = dao.create(file, user.getUsername());
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
-            this.image= (Image) dao.getOne(""+imageId);
-        
+            this.image = (Image) dao.getOne("" + imageId);
+
             return "display.xhtml";
-        }else{
+        } else {
             FacesMessage message = new FacesMessage("Unsuccesful", "File not uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
             return "";
         }
-            
+
     }
 
     public String universityReturn(String uniId) {
@@ -90,9 +89,9 @@ public class ProfileController {
 
     public String test() {
         DAO dao = new ImageDAO();
-        Image i= (Image) dao.getOne(""+4);
-        image= i;
-        System.out.println(""+i.getImageId());
+        Image i = (Image) dao.getOne("" + 4);
+        image = i;
+        System.out.println("" + i.getImageId());
         return "display.xhtml";
     }
 
@@ -128,6 +127,14 @@ public class ProfileController {
         this.imageId = imageId;
     }
 
+    public Image getvidUrl() {
+        return vidUrl;
+    }
+
+    public void setVidUrl(Image vidUrl) {
+        this.vidUrl = vidUrl;
+    }
+
     public User getUser() {
         return user;
     }
@@ -135,8 +142,8 @@ public class ProfileController {
     public void setUser(User user) {
         this.user = user;
     }
-    
-    public String goToProfile(){
+
+    public String goToProfile() {
         return "profile.xhtml?faces-redirect=true";
     }
 }

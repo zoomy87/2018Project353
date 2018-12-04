@@ -92,6 +92,8 @@
                         <p:fileUpload value="#{profileController.file}" mode="simple" skinSimple="true"/>
 
                         <p:commandButton value="Submit" ajax="false" action="#{profileController.upload()}" />
+                        
+                        <h:outputText value="Video:"/> <iframe width="560" height="315" src="#{ProfileController.theModel.vidUrl}" frameborder="0" allowfullscreen="true"></iframe>
                     </h:form>
                 </div>
             </div>

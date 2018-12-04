@@ -24,6 +24,9 @@ public class User {
     private String activeEmail;
     private String userType;
 
+    public User(){
+    }
+   
     public String getUserType() {
         return userType;
     }

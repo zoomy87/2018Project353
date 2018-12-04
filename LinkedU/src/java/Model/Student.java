@@ -12,10 +12,10 @@ import java.util.ArrayList;
  * @author ericz
  */
 public class Student extends User {
-    private int profileId;
+    private String profileId;
     private String dateOfBirth;
-    private int height;
-    private int weight;
+    private String height;
+    private String weight;
     private String street;
     private String city;
     private String address;
@@ -23,19 +23,32 @@ public class Student extends User {
     private String zipcode;
     private String phone;
     private String school;
-    private int endYear;
-    private int sat;
-    private int act;
-    private int psat;
+    private String endYear;
+    private String sat;
+    private String act;
+    private String psat;
     private String certification;
     private String essay;
     private String hobbies;
+    private String username;
+    
+    public Student(){
+        
+    }
 
-    public int getProfileId() {
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getProfileId() {
         return profileId;
     }
 
-    public void setProfileId(int profileId) {
+    public void setProfileId(String profileId) {
         this.profileId = profileId;
     }
 
@@ -47,19 +60,19 @@ public class Student extends User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public int getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
@@ -119,35 +132,35 @@ public class Student extends User {
         this.school = school;
     }
 
-    public int getEndYear() {
+    public String getEndYear() {
         return endYear;
     }
 
-    public void setEndYear(int endYear) {
+    public void setEndYear(String endYear) {
         this.endYear = endYear;
     }
 
-    public int getSat() {
+    public String getSat() {
         return sat;
     }
 
-    public void setSat(int sat) {
+    public void setSat(String sat) {
         this.sat = sat;
     }
 
-    public int getAct() {
+    public String getAct() {
         return act;
     }
 
-    public void setAct(int act) {
+    public void setAct(String act) {
         this.act = act;
     }
 
-    public int getPsat() {
+    public String getPsat() {
         return psat;
     }
 
-    public void setPsat(int psat) {
+    public void setPsat(String psat) {
         this.psat = psat;
     }
 
@@ -175,6 +188,8 @@ public class Student extends User {
         this.hobbies = hobbies;
     }
     
-    
-    
+    public String getUserName(){
+        return super.getUsername();
+    }
+
 }

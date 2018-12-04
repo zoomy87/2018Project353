@@ -74,6 +74,9 @@ CREATE TABLE university(
 -- alter table university drop CONSTRAINT university_profileId_pk;
 -- alter table university drop column profileId;
 -- alter table universityBridge drop column profileId;
+-- alter table university add column profileId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1);
+-- alter table university add CONSTRAINT university_profileId_Pk PRIMARY key (profileId)
+--     references university(profileId);
 -- alter table universityBridge add column profileId Integer;
 -- alter table universityBridge add CONSTRAINT universityBridge_profileId_fk foreign key (profileId)
 --     references university(profileId);

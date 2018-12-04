@@ -34,6 +34,7 @@ public class User {
     private String activeId;
     private String activeEmail;
     private String userType;
+    private static final Logger log= Logger.getLogger(User.class);
 
     public User(){
     }
@@ -42,8 +43,9 @@ public class User {
         try {
             
             Transport.send(message);
+            log.info("Sent message successfully....");
         } catch (MessagingException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            log.log(Logger.Level.FATAL, null, ex);
         }
     
     }

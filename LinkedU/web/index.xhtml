@@ -30,9 +30,9 @@
         <br/><br/>
          <h:form>
           <!--   <p:calendar id="button" value="#{universityController.date}" showOn="button" /><br></br>-->
-          <!--   <p:calendar id="datetime" value="#{universityController.date}" stepMinute="15" pattern="MM/dd/yyyy h:mm a"/>-->
+            <p:calendar id="datetime" value="#{universityController.date}" stepMinute="15" pattern="MM/dd/yyyy h:mm a"/>
              <br></br>
-             <p:calendar id="datetime" stepMinute="15" pattern="MM/dd/yyyy h:mm a"/>
+             
             
              <h:outputText value="#{universityController.dateString}"/><br/>
              <p:commandButton value="Date Submit" ajax="false" action="#{universityController.makeAppointment()}"/>

@@ -55,7 +55,7 @@ public class UniversityController {
         logControl = (LoginController) session.getAttribute("loginController");
         logControl.retriveUser();
         user= logControl.DAOUser;
-        
+        dateString= " ";
         
         app= new Appointment();
         UniDAO da= new UniDAO();
@@ -70,6 +70,7 @@ public class UniversityController {
     public void setDate(Date date) {
         this.date = date;
         dateString= date.toString();
+        log.info(dateString);
         app.setDate(dateString);
         
     }
@@ -118,8 +119,8 @@ public class UniversityController {
         d.create(app,"");
         user.email(this.appointmentEmailMessage());
         
-        log.info("The d Date: "+d);
-        System.out.println(date);
+        log.info("The dateString: "+ dateString);
+        System.out.println(date.toString());
         
     }
     
@@ -128,10 +129,10 @@ public class UniversityController {
         String to = user.getEmail();
 
         // Sender's email ID needs to be mentioned
-        String from = "linkedu2018@gmail.com";
+        String from = "ejzumba@ilstu.edu";
 
         // Assuming you are sending email from this host
-        String host = "smtp.gmail.com";
+        String host = "outlook.office365.com";
 
         // Get system properties
         Properties properties = System.getProperties();
@@ -145,7 +146,7 @@ public class UniversityController {
         // Get the default Session object.
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("linkedu2018@gmail.com", "notPassword");
+                return new PasswordAuthentication("ejzumba@ilstu.edu", "Vincent128706");
             }
         });
         
@@ -175,7 +176,7 @@ public class UniversityController {
 
             // Send message
             
-            log.info("Sent message successfully....");
+            
         } catch (MessagingException mex) {
             log.log(Logger.Level.FATAL, "Messaging Exception: "+mex.getMessage());
         }

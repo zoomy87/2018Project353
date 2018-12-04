@@ -5,18 +5,97 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>search results</title>
+        <title>Search Results</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </h:head>
+
     <h:body>
-        <div>
-            <h:form>
-                <p:dataList value="#{searchController.searchResults}" var="user" >
-                    <p:commandLink action="#{profileController.retrieveProfile(user.username)}" ajax="false">
-                        <h:outputText value="#{user.username}" />
-                    </p:commandLink>
-                </p:dataList>
-            </h:form>
+
+        <div class="container">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="login.xhtml">LinkedU</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class=" active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Me <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="profile.xhtml">Profile</a></li>
+                                <li><a href="LoginGood.xhtml">Account</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="map.xhtml">School Map</a></li>
+                        <li><a href="#">Page 2</a></li>
+                    </ul>
+
+                    <h:form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <p:inputText id="searchInput" class="form-control" placeholder="Search" value="#{searchController.searchTopic}"/>
+                        </div>
+                        <p:commandButton title="Search" class="btn btn-default" action="#{searchController.searchUserId()}"/>
+                    </h:form>
+                </div>
+            </nav>    
+
+
+            <div class="row" id="profilebar">
+
+                <!--Title Bar-->
+                <div class="col-md-12 text-center" id="searchTitle">
+
+                    <h2 >Search Results</h2>
+                </div>
+            </div>
+            <hr/>
+
+
+
+            <!--Paid Search Results?-->
+            <!--            <div class="col-md-1 m-0 p-0">
+                             <p:graphicImage value="#{profileController.image}" alt="UniAd1" height="150px" width="200px" class="img-thumbnail"/>
+                        </div>-->
+            <div class="col-md-3">
+                <div class="row">
+                    <p:graphicImage value="#{profileController.image}" alt="UniAd1" height="150px" width="200px" class="img-thumbnail"/>
+                </div>
+            </div>
+
+            <!--Search Results-->
+         
+            <div class="col-md-5">
+                <div class="row">
+                    <h:form >
+                        <p:dataList value="#{searchController.searchResults}" var="user" >
+                            <p:commandLink action="#{profileController.goToProfile}" ajax="false">
+                                <h:outputText value="#{user.username}" />
+                            </p:commandLink>
+                        </p:dataList>
+                    </h:form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h1>ADS go here</h1>
+                <h1>ADS go here</h1>
+                <h1>ADS go here</h1>
+                <h1>ADS go here</h1>
+            </div>
+
+
+            <div class="row" id="compareBar">
+                <div class="col-md-12 text-center" id="compare">
+                    <hr/>
+                    <button type="button" class="btn btn-default navbar-btn">Compare</button>                       
+                </div>
+
+            </div>
         </div>
     </h:body>
+
 </html>
 

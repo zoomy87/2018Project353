@@ -37,6 +37,7 @@ public class ImageDAO implements DAO{
         
     }
     
+    
     @Override
     public int create(Object File, String username)
     {
@@ -221,9 +222,8 @@ public class ImageDAO implements DAO{
     }
 
    
-    
-    
-    
-    
-    
+    @Override
+    public Object getProfileUser(Object username){
+        return null;
+    }
 }

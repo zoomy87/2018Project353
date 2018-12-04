@@ -7,14 +7,14 @@ package DAO;
 
 import Model.Image;
 import Model.Student;
+import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
 import org.jboss.logging.Logger;
-import org.primefaces.model.StreamedContent;
+import org.primefaces.model.DefaultStreamedContent;
 
 /**
  *
@@ -70,13 +70,58 @@ public class StudentDAO implements DAO {
     }
 
     @Override
+    public Object getProfileUser(Object id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
     public int update(Object obj, String username) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object getOne(Object id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object getOne(Object username) {
+        String id= (String) username;
+       Student s = new Student();
+
+        try {
+            Connection DBConn = DBName.connect2DB();
+            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
+            String insert = "select * from student where username= ?";
+
+            log.info(insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert);
+            stmt.setString(1, id);
+            
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+               
+                s.setProfileId(rs.getInt("profileId"));
+                s.setDateOfBirth(rs.getString("dateOfBirth"));
+                s.setHeight(rs.getString("height"));
+                s.setWeight(rs.getString("weight"));
+                s.setAddress(rs.getString("address"));
+                s.setCountry(rs.getString("country"));
+                s.setZipcode(rs.getString("zipcode"));
+                s.setPhone(rs.getString("phone"));
+                s.setSchool(rs.getString("school"));
+                s.setEndYear(rs.getString("endyear"));
+                s.setAct(rs.getString("ACT"));
+                s.setSat(rs.getString("sat"));
+                s.setPsat(rs.getString("psat"));
+                s.setCertification(rs.getString("certification"));
+                s.setEssay(rs.getString("essay"));
+                s.setUsername(rs.getString("username"));
+                s.setHobbies(rs.getString("hobbies"));
+            }
+
+//                userController.setProfilePictureId(imgID, username);
+            //System.out.println(imgID);
+            DBConn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return s;
     }
 
     @Override
@@ -94,7 +139,7 @@ public class StudentDAO implements DAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Student s = new Student();
-                s.setProfileId(rs.getString("profileId"));
+                s.setProfileId(rs.getInt("profileId"));
                 s.setDateOfBirth(rs.getString("dateOfBirth"));
                 s.setHeight(rs.getString("height"));
                 s.setWeight(rs.getString("weight"));
@@ -137,7 +182,7 @@ public class StudentDAO implements DAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Student s = new Student();
-                s.setProfileId(rs.getString("profileId"));
+                s.setProfileId(rs.getInt("profileId"));
                 s.setDateOfBirth(rs.getString("dateOfBirth"));
                 s.setHeight(rs.getString("height"));
                 s.setWeight(rs.getString("weight"));

@@ -5,6 +5,17 @@
  */
 package Model;
 
+import java.util.Properties;
+import java.util.logging.Level;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import org.jboss.logging.Logger;
+
 /**
  *
  * @author ericz
@@ -25,6 +36,16 @@ public class User {
     private String userType;
 
     public User(){
+    }
+    
+    public void email(MimeMessage message){
+        try {
+            
+            Transport.send(message);
+        } catch (MessagingException ex) {
+            java.util.logging.Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }
    
     public String getUserType() {

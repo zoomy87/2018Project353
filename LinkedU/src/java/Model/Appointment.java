@@ -13,7 +13,7 @@ public class Appointment {
     private String date;
     private int studentId;
     private int universityId;
-    private int appntDate;
+    private int id;
 
     public String getDate() {
         return date;
@@ -39,13 +39,12 @@ public class Appointment {
         this.universityId = universityId;
     }
 
-    public int getAppntDate() {
-        return appntDate;
+    public int getId() {
+        return id;
     }
 
-    public void setAppntDate(int appntDate) {
-        this.appntDate = appntDate;
+    public void setId(int id) {
+        this.id = id;
     }
-    
     
 }

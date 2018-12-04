@@ -15,6 +15,7 @@ public interface DAO {
     public int create(Object obj, String username);
     public int update(Object obj, String username);
     public Object getOne(Object id);
+    public Object getProfileUser(Object id);
     public ArrayList getAll(String username);
     public void delete(Object obj, String username);
     public ArrayList searchById(String id);

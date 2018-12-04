@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author ericz
  */
 public class Student extends User {
-    private String profileId;
+    private int profileId;
     private String dateOfBirth;
     private String height;
     private String weight;
@@ -44,11 +44,11 @@ public class Student extends User {
         this.username = username;
     }
 
-    public String getProfileId() {
+    public int getProfileId() {
         return profileId;
     }
 
-    public void setProfileId(String profileId) {
+    public void setProfileId(int profileId) {
         this.profileId = profileId;
     }
 

@@ -5,13 +5,14 @@
  */
 package DAO;
 
-import com.sun.istack.internal.logging.Logger;
+import Model.Appointment;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import org.jboss.logging.Logger;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -23,30 +24,28 @@ public class AppointmentDAO implements DAO {
     
     
     @Override
-    public int create(Object dateString, String UniversityName) {
-        String date= (String) dateString;
+    public int create(Object appointment, String empty) {
+        Appointment app= (Appointment) appointment;
         int rowCount = 0;
-        int imgID = -1;
+        int ID = -1;
         
         try
         {
-            Connection DBConn= DBName.connect2DB();
-            DAO sdao= new StudentDAO();
-            sdao.getOne(dateString);
+            Connection DBConn= DBName.connect2DB();           
             //String type = file.getFileName().substring(file.getFileName().indexOf("."));
             String insert = "INSERT INTO appointment VALUES (default, ?, ?, ?)";
             log.info(insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, date);
-            stmt.setString(2, date);
-            stmt.setString(3, date);
+            stmt.setInt(1, app.getStudentId() );
+            stmt.setInt(2, app.getUniversityId());
+            stmt.setString(3, app.getDate());
             rowCount = stmt.executeUpdate();
             if (rowCount == 1)
             {
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next())
                 {
-                    imgID = rs.getInt(1);
+                    ID = rs.getInt(1);
                 }
 
 //                userController.setProfilePictureId(imgID, username);
@@ -59,9 +58,14 @@ public class AppointmentDAO implements DAO {
         {
             System.err.println(e.getMessage());
         }
-        return imgID;
+        return ID;
     
     
+    }
+
+    @Override
+    public Object getProfileUser(Object id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

@@ -6,6 +6,8 @@
 package DAO;
 
 import Model.Image;
+import Model.Profile;
+import Model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +20,17 @@ import org.primefaces.model.StreamedContent;
  */
 public class UniDAO implements DAO {
 
+    
+    @Override
+    public User getOneUsername(Object username){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public Profile getProfileUni(Object username){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public int create(Object obj, String username) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

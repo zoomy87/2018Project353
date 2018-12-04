@@ -41,7 +41,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <h:commandButton class="btn btn-default btn-block btn-sm btn-success" action="#{loginController.authenticate()}" value="Log In" />
+                                <h:commandButton class="btn btn-default btn-block btn-sm btn-success" action="#{loginController.authenticate()}" value="Log In" >
+                                    <f:actionListener binding="#{loginController.retriveUser()}" />
+                                    <f:actionListener binding="#{profileController.retrieveProfile()}" />
+                                </h:commandButton>
                             </div>
                             <div class="col-md-6">
                                 <h:commandButton class="btn btn-default btn-block btn-sm btn-info" value="Sign up" action="signup.xhtml" immediate="true" />

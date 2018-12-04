@@ -7,6 +7,8 @@ package DAO;
 
 import Controller.UserController;
 import Model.Image;
+import Model.Profile;
+import Model.User;
 import com.oracle.webservices.api.message.PropertySet.Property;
 import java.io.ByteArrayInputStream;
 import java.sql.Connection;
@@ -221,9 +223,18 @@ public class ImageDAO implements DAO{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   
     @Override
     public Object getProfileUser(Object username){
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public User getOneUsername(Object username){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public Profile getProfileUni(Object username){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

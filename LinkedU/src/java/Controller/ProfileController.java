@@ -40,7 +40,10 @@ public class ProfileController {
     private final FacesContext facesContext;
     private final HttpSession session;
     User user;
+    User searchUser;
     Profile DAOProfile;
+    Profile uniSearchProfile;
+    Profile userSearchProfile;
     UserDAO DAOImpl;
     
 
@@ -48,6 +51,25 @@ public class ProfileController {
     public void retrieveProfile(){
         DAOImpl = new UserDAO();
         DAOProfile = DAOImpl.getProfileUser(user.getUsername());
+    }
+    
+    public String retrieveProfile(String searchUsername){
+        UserDAO searchUserDao = new UserDAO();
+        System.out.println("searchUsername is: " + searchUsername);
+        searchUser = searchUserDao.getOneUsername(searchUsername);
+        
+        if(searchUser.getUserType().toLowerCase().equals("university")){
+            uniSearchProfile = new Profile();
+            uniSearchProfile = DAOImpl.getProfileUni(searchUsername);
+            return "uniSearchProfile.xhtml?faces-redirect=true";
+        }
+        
+        if(searchUser.getUserType().toLowerCase().equals("student")){
+            userSearchProfile = new Profile();
+            userSearchProfile = DAOImpl.getProfileUser(searchUsername);
+            return "userSearchProfile.xhtml?faces-redirect=true";
+        }
+        return "searchError.xhtml?faces-redirect=true";
     }
     
     public ProfileController(){
@@ -96,6 +118,30 @@ public class ProfileController {
         return "display.xhtml";
     }
 
+    public User getSearchUser() {
+        return searchUser;
+    }
+
+    public void setSearchUser(User searchUser) {
+        this.searchUser = searchUser;
+    }
+
+    public Profile getUniSearchProfile() {
+        return uniSearchProfile;
+    }
+
+    public void setUniSearchProfile(Profile uniSearchProfile) {
+        this.uniSearchProfile = uniSearchProfile;
+    }
+
+    public Profile getUserSearchProfile() {
+        return userSearchProfile;
+    }
+
+    public void setUserSearchProfile(Profile userSearchProfile) {
+        this.userSearchProfile = userSearchProfile;
+    }
+
     public Profile getDAOProfile() {
         return DAOProfile;
     }
@@ -136,7 +182,7 @@ public class ProfileController {
         this.user = user;
     }
     
-    public String goToProfile(){
-        return "profile.xhtml?faces-redirect=true";
-    }
+//    public String goToProfile(){
+//        return "profile.xhtml?faces-redirect=true";
+//    }
 }

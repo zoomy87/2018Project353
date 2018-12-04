@@ -10,7 +10,7 @@
     <h:body>
         <h:form>
             <p:dataList value="#{searchController.searchResults}" var="user" >
-                <p:commandLink action="#{profileController.goToProfile}" ajax="false">
+                <p:commandLink action="#{profileController.retrieveProfile(user.username)}" ajax="false">
                     <h:outputText value="#{user.username}" />
                 </p:commandLink>
             </p:dataList>

@@ -20,20 +20,37 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class SearchController {
+
     private String searchTopic;
     private List<User> searchResults;
-    private static final Logger log= Logger.getLogger(SearchController.class);
-    
-    public SearchController(){
-     
+    private static final Logger log = Logger.getLogger(SearchController.class);
+
+    public SearchController() {
+
     }
-    
-    public String searchUserId(){
-        DAO userDAO= new UserDAO();
+
+    public String searchUserId() {
+        DAO userDAO = new UserDAO();
         log.info(searchTopic);
-        searchResults= userDAO.searchById(searchTopic);
-        
-        return "SearchResults.xhtml";
+        searchResults = userDAO.searchById(searchTopic);
+
+        return "SearchResults?redirect=true";
+    }
+
+    public String searchUserIdASC() {
+        UserDAO userDAO = new UserDAO();
+        log.info(searchTopic);
+        searchResults = userDAO.searchByIdASC(searchTopic);
+
+        return "SearchResults?redirect=true";
+    }
+
+    public String searchUserIdDESC() {
+        UserDAO userDAO = new UserDAO();
+        log.info(searchTopic);
+        searchResults = userDAO.searchByIdDESC(searchTopic);
+
+        return "SearchResults?redirect=true";
     }
 
     public String getSearchTopic() {
@@ -51,6 +68,5 @@ public class SearchController {
     public void setSearchResults(List<User> searchResults) {
         this.searchResults = searchResults;
     }
-    
-    
+
 }

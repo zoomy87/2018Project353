@@ -50,7 +50,6 @@ public class ImageDAO implements DAO{
         try
         {
             Connection DBConn= DBName.connect2DB();
-            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
             String insert = "INSERT INTO IMAGES VALUES (default, ?, '" + username + "')";
             System.out.println("IMAGEDAOIMPL: " + insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
@@ -63,9 +62,6 @@ public class ImageDAO implements DAO{
                 {
                     imgID = rs.getInt(1);
                 }
-
-//                userController.setProfilePictureId(imgID, username);
-                //System.out.println(imgID);
             }
 
             DBConn.close();

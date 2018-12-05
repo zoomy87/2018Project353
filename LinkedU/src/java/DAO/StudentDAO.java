@@ -6,7 +6,9 @@
 package DAO;
 
 import Model.Image;
+import Model.Profile;
 import Model.Student;
+import Model.User;
 import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -215,6 +217,16 @@ public class StudentDAO implements DAO {
 
     @Override
     public ArrayList searchById(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public User getOneUsername(Object searchUsername) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Profile getProfileUni(Object username) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

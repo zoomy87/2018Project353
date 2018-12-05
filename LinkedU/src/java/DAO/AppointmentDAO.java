@@ -6,6 +6,8 @@
 package DAO;
 
 import Model.Appointment;
+import Model.Profile;
+import Model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -90,6 +92,16 @@ public class AppointmentDAO implements DAO {
 
     @Override
     public ArrayList searchById(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public User getOneUsername(Object searchUsername) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Profile getProfileUni(Object username) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

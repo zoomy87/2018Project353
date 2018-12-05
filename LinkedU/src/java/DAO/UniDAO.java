@@ -52,7 +52,7 @@ public class UniDAO implements DAO {
 
             //System.out.println("IMAGEDAOIMPL: " + insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);
-            stmt.setString(1, (String) username);
+            stmt.setString(1, (String) id);
 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {

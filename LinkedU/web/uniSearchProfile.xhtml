@@ -3,7 +3,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <meta charset="utf-8" />
@@ -45,18 +46,29 @@
                 </div>
             </nav>
             <div class="row">
-                <div class="col-md-8">
-                    <h3 class="text-center">
+                <div class="col-md-12">
+                    <div class="col-md-4">
                         <iframe
-                            width="400"
-                            height="300"
                             frameborder="0" style="border:0"
                             src="#{profileController.universityReturn(profileController.uniSearchProfile.username)}"  allowfullscreen="true">
                         </iframe>
-                        <br/>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="text-center">
+                            <p:graphicImage id="imageId" value="#{profileController.image}" height="150px" width="300px"/>
+                        </h3>
+                    </div>
+                    <div class="col-md-4">
+                        <iframe src="#{profileController.universityVideoReturn(profileController.uniSearchProfile.username)}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+                    </div>
+                    <br/>
+                    <h3 class="text-center">
                         <h:outputText value="#{profileController.uniSearchProfile.fName}" />
                     </h3>
                     <hr />
+                </div>
+                <div class="col-md-8">
+
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -123,18 +135,10 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <h1>UNI ADS GO HERE</h1><br/>
-                    <h1>UNI ADS GO HERE</h1><br/>
-                    <h1>UNI ADS GO HERE</h1><br/>
-                    <h1>UNI ADS GO HERE</h1><br/>
-                    <h1>UNI ADS GO HERE</h1><br/>
-                    <h1>UNI ADS GO HERE</h1><br/>
-                    <h1>UNI ADS GO HERE</h1><br/>
-                    <h1>UNI ADS GO HERE</h1><br/>
-                    <h1>UNI ADS GO HERE</h1><br/>
-                    <h1>UNI ADS GO HERE</h1><br/>
-                    <h1>UNI ADS GO HERE</h1><br/>
-                    <h1>UNI ADS GO HERE</h1><br/>
+                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
+                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
+                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
+                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
                 </div>
             </div>
         </div>

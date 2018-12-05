@@ -5,47 +5,45 @@
  */
 package Model;
 
-import java.sql.Date;
-
 /**
  *
- * @author mlisows
+ * @author ejzumba
  */
 public class Appointment {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private Date date1;
+    private String date;
+    private int studentId;
+    private int universityId;
+    private int id;
 
-    public String getFirstName() {
-        return firstName;
+    public String getDate() {
+        return date;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getLastName() {
-        return lastName;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
-    public String getEmail() {
-        return email;
+    public int getUniversityId() {
+        return universityId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUniversityId(int universityId) {
+        this.universityId = universityId;
     }
 
-    public Date getDate1() {
-        return date1;
+    public int getId() {
+        return id;
     }
 
-    public void setDate1(Date date1) {
-        this.date1 = date1;
+    public void setId(int id) {
+        this.id = id;
     }
 }

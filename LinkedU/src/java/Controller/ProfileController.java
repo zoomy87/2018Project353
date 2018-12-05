@@ -61,6 +61,7 @@ public class ProfileController {
         if(searchUser.getUserType().toLowerCase().equals("university")){
             uniSearchProfile = new Profile();
             uniSearchProfile = DAOImpl.getProfileUni(searchUsername);
+            
             return "uniSearchProfile.xhtml?faces-redirect=true";
         }
         
@@ -114,7 +115,7 @@ public class ProfileController {
         String src;
         String school;
         DAO uniDB = new UniDAO();
-        src = "https://www.youtube.com/embed?listType=search&list=" + uniDB.getOne(uniId) + "+tour";
+        src = "https://www.youtube.com/embed?listType=search&list=" + uniId + "+tour";
         return src;
     }
 

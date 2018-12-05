@@ -8,6 +8,7 @@ package DAO;
 import Model.Image;
 import Model.Profile;
 import Model.User;
+import Model.University;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,8 +43,8 @@ public class UniDAO implements DAO {
     }
 
     @Override
-    public Object getOne(Object username) {
-        String university = "";
+    public Object getOne(Object id) {
+        University university = new University();
         try {
             Connection DBConn = DBName.connect2DB();
             //String type = file.getFileName().substring(file.getFileName().indexOf("."));
@@ -51,11 +52,39 @@ public class UniDAO implements DAO {
 
             //System.out.println("IMAGEDAOIMPL: " + insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);
-            stmt.setString(1, (String) username);
+            stmt.setString(1, (String) id);
 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                university = rs.getString("universityName");
+                university.setUsername(rs.getString("universityName"));
+            }
+
+//                userController.setProfilePictureId(imgID, username);
+            //System.out.println(imgID);
+            DBConn.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return university;
+
+    }
+    
+    public University getOne(String username) {
+        University university = new University();
+        try {
+            Connection DBConn = DBName.connect2DB();
+            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
+            String insert = "Select * From University Where username= ? ";
+
+            //System.out.println("IMAGEDAOIMPL: " + insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert);
+            stmt.setString(1, username);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                university.setUsername(rs.getString("username"));
+                university.setProfileId(rs.getInt("profileid"));
+                university.setEmail(rs.getString("universityEmail"));
             }
 
 //                userController.setProfilePictureId(imgID, username);
@@ -80,8 +109,12 @@ public class UniDAO implements DAO {
             stmt.setString(1, query);
 
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                String uniName = rs.getString("universityName");
+            while (rs.next()) {
+                University university= new University();
+                university.setUsername(rs.getString("username"));
+                university.setProfileId(rs.getInt("profileid"));
+                university.setEmail(rs.getString("universityEmail"));
+                retVal.add(university);
             }
 
 //                userController.setProfilePictureId(imgID, username);

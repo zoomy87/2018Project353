@@ -46,7 +46,10 @@
             </nav>
             <div class="row">
                 <div class="col-md-8">
-                    <h3 class="text-center"><p:graphicImage id="imageId" value="#{profileController.image}" height="150px" width="300px"/><br/><h:outputText value="#{profileController.DAOProfile.fName}" />, <h:outputText value="#{profileController.DAOProfile.lName}" /></h3>
+                    <h3 class="text-center">
+                        <p:graphicImage id="imageId" value="#{profileController.image}" height="150px" width="300px"/><br/>
+                        <h:outputText value="#{profileController.DAOProfile.fName}" />, <h:outputText value="#{profileController.DAOProfile.lName}" />
+                    </h3>
                     <hr />
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
@@ -125,7 +128,6 @@
                     <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
                     <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
                     <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
-                    <iframe width="560" height="315" src="#{profileController.universityVideoReturn(1)}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
                     <h1>ADS GO HERE</h1><br/>
                     <h1>ADS GO HERE</h1><br/>
                     <h1>ADS GO HERE</h1><br/>

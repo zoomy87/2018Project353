@@ -173,12 +173,12 @@ CREATE TABLE appointment(
 CREATE TABLE ShowcaseUniversity(
 	ShowcaseID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
 	UniversityName VARCHAR(100),
-    ImageName VARCHAR(50),
+    ImageName BLOB,
     IsShowCase CHAR(1),
     CONSTRAINT showcaseUniversity_showcaseID_pk PRIMARY KEY (ShowcaseID));
 	
 	
-	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) VALUES ('Harvard University','harvard.png','1');
+	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) SELECT * FROM Openrowset(BULK 'I:\showcaseImages\harvard.jpg',SINGLE_BLOB) AS ImageName;
 	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) VALUES ('Princeton University','princeton.png','1');
 	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) VALUES ('Illinois State University','ISU1.jpg','0');
 	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) VALUES ('University of Illinois Chicago','UIC.png','0');
@@ -188,7 +188,9 @@ CREATE TABLE ShowcaseUniversity(
 	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) VALUES ('Columbia University','columbia.jpg','0');
 	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) VALUES ('Stanford University','stanford.png','0');
 	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) VALUES ('Duke University','duke.jpg','0');
-		
+
+
+	
 		------------------------ Insert Scripts-----------------
 INSERT INTO USERS
       VALUES ('isu', 'isu', 'illinois state university', 'illinois state university', 'EMAIL', '', '', 'University',1,'0');

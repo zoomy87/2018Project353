@@ -45,24 +45,25 @@
                 </div>
             </nav>
             <div class="row">
-                <div class="col-md-8">
-                    <h3 class="text-center">
-                        <p:graphicImage id="imageId" value="#{profileController.image}" height="150px" width="300px"/><br/>
-                        <h:outputText value="#{profileController.DAOProfile.fName}" />, <h:outputText value="#{profileController.DAOProfile.lName}" />
-                    </h3>
+                <div class="col-md-12">
+                    <h3 class="text-center"><p:graphicImage id="imageId" value="#{profileController.image}" height="150px" width="300px"/><br/><h:outputText value="#{profileController.DAOProfile.fName}" />, <h:outputText value="#{profileController.DAOProfile.lName}" /></h3>
                     <hr />
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                        About Me</a>
+                                        Account</a>
                                 </h4>
                             </div>
                             <div id="collapse1" class="panel-collapse collapse in">
                                 <div class="panel-body">
                                     <label for="exampleInputEmail1">User ID</label>:
                                     <h:outputText value="#{profileController.DAOProfile.username}" /><br/>
+                                    <label for="exampleInputEmail1">First Name</label>:
+                                    <h:outputText value="#{profileController.DAOProfile.fName}" /><br/>
+                                    <label for="exampleInputEmail1">Last Name</label>:
+                                    <h:outputText value="#{profileController.DAOProfile.lName}" /><br/>
                                     <label for="exampleInputEmail1">Email</label>:
                                     <h:outputText value="#{profileController.DAOProfile.email}" /><br/>
                                     <label for="exampleInputEmail1">DOB</label>: 
@@ -79,7 +80,7 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                                        Place of Residence</a>
+                                        Profile</a>
                                 </h4>
                             </div>
                             <div id="collapse2" class="panel-collapse collapse">
@@ -92,18 +93,6 @@
                                     <h:outputText value="#{profileController.DAOProfile.zipcode}" /><br/>
                                     <label for="exampleInputEmail1">Phone</label>: 
                                     <h:outputText value="#{profileController.DAOProfile.phone}" /><br/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                                        Education</a>
-                                </h4>
-                            </div>
-                            <div id="collapse3" class="panel-collapse collapse">
-                                <div class="panel-body">
                                     <label for="exampleInputEmail1">High School</label>: 
                                     <h:outputText value="#{profileController.DAOProfile.school}" /><br/>
                                     <label for="exampleInputEmail1">Graduation Date</label>: 
@@ -123,17 +112,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
-                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
-                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
-                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
-                    <h1>ADS GO HERE</h1><br/>
-                    <h1>ADS GO HERE</h1><br/>
-                    <h1>ADS GO HERE</h1><br/>
-                    <h1>ADS GO HERE</h1><br/>
-                    <h1>ADS GO HERE</h1><br/>
-                </div>
+                <!--                <h:form>
+                                    <div class="col-md-12">
+                                        <h:commandButton class="btn btn-default btn-block btn-sm btn-success" value="Update" action="update?redirect=true"/>
+                                    </div>
+                                </h:form>-->
+
+                <h:form enctype="multipart/form-data">
+                    <p:growl id="messages" showDetail="true" />
+                    <div class="col-md-6">
+                        <p:fileUpload value="#{profileController.file}" mode="simple" skinSimple="true"/>
+                    </div>
+                    <div class="col-md-6">
+                        <p:commandButton value="Submit" ajax="false" action="#{profileController.upload()}" />
+                    </div>
+                </h:form>
             </div>
         </div>
     </h:body>

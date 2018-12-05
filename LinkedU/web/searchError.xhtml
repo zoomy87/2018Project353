@@ -10,14 +10,11 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="refresh" content="2;home.xhtml" />
         <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <title>Error</title>
     </h:head>
 
     <h:body>
-        <f:metadata>
-            <f:event type="preRenderView" listener="#{loginController.getIsLoggedIn()}" />
-        </f:metadata>
         <div class="container">
             <nav class="navbar navbar-inverse">
               <div class="container-fluid">
@@ -29,21 +26,17 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <div class="row">
-                        <h3 class="text-center">Login Successful</h3>
-                        <h3 class="text-center">Welcome <h:outputText value="#{loginController.DAOUser.fName}" />, <h:outputText value="#{loginController.DAOUser.lName}" /></h3>
-                        <h3 class="text-center">Redirecting in 3 seconds...</h3>
-                    </div>
-                    <h:form>
-                        <div class="row">
-                            <div class="col-md-12"><br/>
-                                <h:commandButton class="btn btn-default btn-block btn-sm btn-success" value="Continue" action="home?redirect=true"/>
-                            </div>
-                        </div>
-                    </h:form>
+                    <h3 class="text-center">Search Unsuccessful</h3>
                 </div>
+                <h:form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h:commandButton class="btn btn-default btn-block btn-sm btn-info" value="Back" action="home?redirect=true"  />
+                        </div>
+                    </div>
+                </h:form>
             </div>
         </div>
     </h:body>
-</html>
 
+</html>

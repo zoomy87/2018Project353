@@ -6,6 +6,8 @@
 package DAO;
 
 import Model.Image;
+import Model.Profile;
+import Model.User;
 import Model.University;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +21,17 @@ import org.primefaces.model.StreamedContent;
  */
 public class UniDAO implements DAO {
 
+    
+    @Override
+    public User getOneUsername(Object username){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public Profile getProfileUni(Object username){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public int create(Object obj, String username) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -35,7 +48,7 @@ public class UniDAO implements DAO {
         try {
             Connection DBConn = DBName.connect2DB();
             //String type = file.getFileName().substring(file.getFileName().indexOf("."));
-            String insert = "Select UniversityName From ShowcaseUniversity Where showcaseid= ? ";
+            String insert = "SELECT universityname FROM showcaseuniversity Where username = ? ";
 
             //System.out.println("IMAGEDAOIMPL: " + insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);
@@ -81,7 +94,6 @@ public class UniDAO implements DAO {
             System.err.println(e.getMessage());
         }
         return university;
-
     }
 
     @Override

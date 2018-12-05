@@ -46,10 +46,7 @@
             </nav>
             <div class="row">
                 <div class="col-md-8">
-                    <h3 class="text-center">
-                        <p:graphicImage id="imageId" value="#{profileController.image}" height="150px" width="300px"/><br/>
-                        <h:outputText value="#{profileController.DAOProfile.fName}" />, <h:outputText value="#{profileController.DAOProfile.lName}" />
-                    </h3>
+                    <h3 class="text-center"><p:graphicImage id="imageId" value="#{profileController.image}" height="150px" width="300px"/><br/><h:outputText value="#{profileController.userSearchProfile.fName}" />, <h:outputText value="#{profileController.userSearchProfile.lName}" /></h3>
                     <hr />
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
@@ -62,15 +59,17 @@
                             <div id="collapse1" class="panel-collapse collapse in">
                                 <div class="panel-body">
                                     <label for="exampleInputEmail1">User ID</label>:
-                                    <h:outputText value="#{profileController.DAOProfile.username}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.username}" /><br/>
                                     <label for="exampleInputEmail1">Email</label>:
-                                    <h:outputText value="#{profileController.DAOProfile.email}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.email}" /><br/>
+                                    <label for="exampleInputEmail1">Phone</label>: 
+                                    <h:outputText value="#{profileController.userSearchProfile.phone}" /><br/>
                                     <label for="exampleInputEmail1">DOB</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.dateOfBirth}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.dateOfBirth}" /><br/>
                                     <label for="exampleInputEmail1">Height</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.height}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.height}" /><br/>
                                     <label for="exampleInputEmail1">Weight (lbs)</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.weight}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.weight}" /><br/>
 
                                 </div>
                             </div>
@@ -85,13 +84,11 @@
                             <div id="collapse2" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <label for="exampleInputEmail1">Address</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.address}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.address}" /><br/>
                                     <label for="exampleInputEmail1">Country</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.country}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.country}" /><br/>
                                     <label for="exampleInputEmail1">Zip Code</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.zipcode}" /><br/>
-                                    <label for="exampleInputEmail1">Phone</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.phone}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.zipcode}" /><br/>
                                 </div>
                             </div>
                         </div>
@@ -105,29 +102,31 @@
                             <div id="collapse3" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <label for="exampleInputEmail1">High School</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.school}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.school}" /><br/>
                                     <label for="exampleInputEmail1">Graduation Date</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.endYear}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.endYear}" /><br/>
                                     <label for="exampleInputEmail1">SAT</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.sat}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.sat}" /><br/>
                                     <label for="exampleInputEmail1">ACT</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.act}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.act}" /><br/>
                                     <label for="exampleInputEmail1">PSAT</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.psat}" /><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.psat}" /><br/>
                                     <label for="exampleInputEmail1">Essay</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.essay}" style="word-wrap: break-word"/><br/>
+                                    <h:outputText value="#{profileController.userSearchProfile.essay}" style="word-wrap: break-word"/><br/>
                                     <label for="exampleInputEmail1">Hobbies</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.hobbies}" />
+                                    <h:outputText value="#{profileController.userSearchProfile.hobbies}" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
-                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
-                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
-                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
+                    <h1>ADS GO HERE</h1><br/>
+                    <h1>ADS GO HERE</h1><br/>
+                    <h1>ADS GO HERE</h1><br/>
+                    <h1>ADS GO HERE</h1><br/>
+                    <h1>ADS GO HERE</h1><br/>
+                    <h1>ADS GO HERE</h1><br/>
                     <h1>ADS GO HERE</h1><br/>
                     <h1>ADS GO HERE</h1><br/>
                     <h1>ADS GO HERE</h1><br/>

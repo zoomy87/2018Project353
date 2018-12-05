@@ -169,6 +169,36 @@ public class UserDAO implements DAO {
     }
     
     @Override
+    public User getOneUsername(Object searchUsername) {
+        String username = (String) searchUsername;
+        User retVal = null;
+
+        try {
+            Connection DBConn = DBName.connect2DB();
+
+            String insertString;
+            Statement stmt = DBConn.createStatement();
+            insertString = "select * from users where username ='" + username + "'";
+            ResultSet rs = stmt.executeQuery(insertString);
+            if (rs.next()) {
+                retVal = new User();
+                retVal.setfName(rs.getString("firstname"));
+                retVal.setlName(rs.getString("lastname"));
+                retVal.setUsername(rs.getString("username"));
+                retVal.setPassword(rs.getString("password"));
+                retVal.setSecQues(rs.getString("securityquestion"));
+                retVal.setSecAns(rs.getString("securityanswer"));
+                retVal.setEmail(rs.getString("email"));
+                retVal.setUserType(rs.getString("usertype"));
+                retVal.setActiveId(retVal.getUsername());
+            }
+        } catch (SQLException ex) {
+
+        }
+        return retVal;
+    }
+    
+    @Override
     public Profile getProfileUser(Object username) {
         String usernameQuery = (String) username;
         Profile retVal = null;
@@ -206,6 +236,36 @@ public class UserDAO implements DAO {
                 retVal.setEssay(rs.getString("essay"));
                 retVal.setHobbies(rs.getString("hobbies"));
                 retVal.setActiveId(retVal.getUsername());
+            }
+        } catch (SQLException ex) {
+
+        }
+        return retVal;
+    }
+    
+    @Override
+    public Profile getProfileUni(Object username) {
+        String usernameQuery = (String) username;
+        Profile retVal = null;
+
+        try {
+            Connection DBConn = DBName.connect2DB();
+
+            String insertString;
+            Statement stmt = DBConn.createStatement();
+            insertString = "SELECT * FROM users u INNER JOIN university uni ON u.username = uni.username WHERE u.username ='" + usernameQuery + "'";
+            ResultSet rs = stmt.executeQuery(insertString);
+            if (rs.next()) {
+                retVal = new Profile();
+                retVal.setUsername(rs.getString("username"));
+                retVal.setPassword(rs.getString("password"));
+                retVal.setfName(rs.getString("firstname"));
+                retVal.setlName(rs.getString("lastname"));
+                retVal.setEmail(rs.getString("email"));
+                retVal.setSecQues(rs.getString("securityquestion"));
+                retVal.setSecAns(rs.getString("securityanswer"));
+                retVal.setUserType(rs.getString("usertype"));
+                retVal.setDateOfBirth(rs.getString("dateofbirth"));
             }
         } catch (SQLException ex) {
 

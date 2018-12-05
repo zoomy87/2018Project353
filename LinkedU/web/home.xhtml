@@ -13,16 +13,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <style>
-            table, th, td {
-                border: 1px solid black;
-                border-collapse: collapse;
-            }
-            th, td{
-                text-align: center;
-            }
-        </style>
     </h:head>
+
     <h:body>
         <f:metadata>
             <f:event type="preRenderView" listener="#{loginController.getIsLoggedIn()}" />
@@ -52,67 +44,43 @@
                     </h:form>
                 </div>
             </nav>
-            <table style="width:100%">
-                <tr>
-                  <th>College</th>
-                  <th>Map</th> 
-                </tr>
-                <tr>
-                  <td>Harvard University</td>
-                  <td>
-                    <iframe
-                        width="400"
-                        height="300"
-                        frameborder="0" style="border:0"
-                        src="#{profileController.universityReturn(1)}"  allowfullscreen="true">
-                    </iframe>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Princeton University</td>
-                  <td>
-                    <iframe
-                        width="400"
-                        height="300"
-                        frameborder="0" style="border:0"
-                        src="#{profileController.universityReturn(2)}"  allowfullscreen="true">
-                    </iframe>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Illinois State University</td>
-                  <td>
-                    <iframe
-                        width="400"
-                        height="300"
-                        frameborder="0" style="border:0"
-                        src="#{profileController.universityReturn(3)}"  allowfullscreen="true">
-                    </iframe>
-                  </td>
-                </tr>
-                <tr>
-                  <td>University of Illinois at Chicago</td>
-                  <td>
-                    <iframe
-                        width="400"
-                        height="300"
-                        frameborder="0" style="border:0"
-                        src="#{profileController.universityReturn(4)}"  allowfullscreen="true">
-                    </iframe>
-                  </td>
-                </tr>
-                <tr>
-                  <td>University of Illinois at Urbana</td>
-                  <td>
-                    <iframe
-                        width="400"
-                        height="300"
-                        frameborder="0" style="border:0"
-                        src="#{profileController.universityReturn(5)}"  allowfullscreen="true">
-                    </iframe>
-                  </td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="col-md-2">
+                    <h3 class="text-center"><p:graphicImage id="imageId" value="#{profileController.image}" height="50px" width="75px"/><br/><h:outputText value="#{profileController.DAOProfile.fName}" />, <h:outputText value="#{profileController.DAOProfile.lName}" /></h3>
+                    <hr />
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        About Me</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <label for="exampleInputEmail1">User ID</label>:
+                                    <h:outputText value="#{profileController.DAOProfile.username}" /><br/>
+                                    <label for="exampleInputEmail1">Email</label>:
+                                    <h:outputText value="#{profileController.DAOProfile.email}" /><br/>
+                                    <label for="exampleInputEmail1">DOB</label>: 
+                                    <h:outputText value="#{profileController.DAOProfile.dateOfBirth}" /><br/>
+                                    <label for="exampleInputEmail1">Height</label>: 
+                                    <h:outputText value="#{profileController.DAOProfile.height}" /><br/>
+                                    <label for="exampleInputEmail1">Weight (lbs)</label>: 
+                                    <h:outputText value="#{profileController.DAOProfile.weight}" /><br/>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <h1>HOME</h1>
+                </div>
+                <div class="col-md-2">
+                    <h1>ADS</h1>
+                </div>
+            </div>
         </div>
     </h:body>
 </html>

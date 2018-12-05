@@ -21,28 +21,27 @@
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="login.xhtml">LinkedU</a>
+                        <a class="navbar-brand" href="home.xhtml">LinkedU</a>
                     </div>
                     <ul class="nav navbar-nav">
                         <li class=" active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Me <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="profile.xhtml">Profile</a></li>
-                                <li><a href="LoginGood.xhtml">Account</a></li>
+                                <li><a href="account.xhtml">Account</a></li>
+                                <li><h:form><p:commandButton title="Logout" class="btn btn-default btn-block btn-sm btn-danger" action="#{loginController.logout()}"/></h:form></li>
                             </ul>
                         </li>
                         <li><a href="map.xhtml">School Map</a></li>
                         <li><a href="#">Page 2</a></li>
                     </ul>
-
                     <h:form class="navbar-form navbar-right">
                         <div class="form-group">
-                            <p:inputText id="searchInput" class="form-control" placeholder="Search" value="#{searchController.searchTopic}"/>
+                            <p:inputText placeholder="Search" id="searchInput" class="form-control" value="#{searchController.searchTopic}"/>
                         </div>
                         <p:commandButton title="Search" class="btn btn-default" action="#{searchController.searchUserId()}"/>
                     </h:form>
                 </div>
-            </nav>    
-
+            </nav>
 
             <div class="row" id="profilebar">
 
@@ -67,12 +66,12 @@
             </div>
 
             <!--Search Results-->
-         
+
             <div class="col-md-5">
                 <div class="row">
                     <h:form >
                         <p:dataList value="#{searchController.searchResults}" var="user" >
-                            <p:commandLink action="#{profileController.goToProfile}" ajax="false">
+                            <p:commandLink action="#{profileController.retrieveProfile(user.username)}" ajax="false">
                                 <h:outputText value="#{user.username}" />
                             </p:commandLink>
                         </p:dataList>
@@ -80,10 +79,10 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <h1>ADS go here</h1>
-                <h1>ADS go here</h1>
-                <h1>ADS go here</h1>
-                <h1>ADS go here</h1>
+                <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
+                <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
+                <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
+                <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
             </div>
 
 

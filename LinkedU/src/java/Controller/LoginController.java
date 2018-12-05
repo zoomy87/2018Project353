@@ -13,6 +13,7 @@ import DAO.DAO;
 import DAO.UserDAO;
 import java.util.HashMap;
 import java.util.Map;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
@@ -32,9 +33,15 @@ public class LoginController {
 //    @ManagedProperty("userDAO")
     UserDAO DAOImpl;
     Map<String, Integer> loginTries = new HashMap<>();
-
-    ;
-
+    private boolean isLoggedIn= false;
+    
+    public void logout(){
+        isLoggedIn = false;
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler) fc.getApplication().getNavigationHandler();
+        nav.performNavigation("login.xhtml?faces-redirect=true");
+    }
+    
     public User getDAOUser() {
         return DAOUser;
     }
@@ -65,6 +72,7 @@ public class LoginController {
         int x = 1;
 
         if (pass.equals(model.getPassword())) {
+            isLoggedIn = true;
             retVal = "LoginGoodResponse.xhtml";
         }else if (!loginTries.containsKey(model.getEmail())) {
             loginTries.put(model.getEmail(), x);
@@ -152,6 +160,19 @@ public class LoginController {
         if (!isUserID && !isEmail && isPasswordMatch) {
             
         }
+    }
+    
+    
+
+    public String getIsLoggedIn() {
+        String navi = null;
+
+        if (!isLoggedIn) {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler) fc.getApplication().getNavigationHandler();
+            nav.performNavigation("login.xhtml?faces-redirect=true");
+        }
+        return navi;
     }
 
 }

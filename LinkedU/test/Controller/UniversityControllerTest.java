@@ -32,7 +32,7 @@ public class UniversityControllerTest {
         User u= new User();
         u.email(mm);
         
-       assertTrue(mm instanceof MimeMessage);
+       assertTrue(uc.appointmentEmailMessage() instanceof MimeMessage);
     }
     
     @BeforeClass

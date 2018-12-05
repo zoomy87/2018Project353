@@ -109,6 +109,14 @@ public class ProfileController {
         src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBfcRh_4s3ZdcGnTdhGEWnSjyghyoh7vc0&q=" + username;
         return src;
     }
+    
+    public String universityVideoReturn(String uniId) {
+        String src;
+        String school;
+        DAO uniDB = new UniDAO();
+        src = "https://www.youtube.com/embed?listType=search&list=" + uniDB.getOne(uniId) + "+tour";
+        return src;
+    }
 
     public String test() {
         DAO dao = new ImageDAO();

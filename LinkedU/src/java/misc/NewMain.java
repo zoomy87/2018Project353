@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 
 public class NewMain {
 
-    private static final String SAMPLE_CSV_FILE_PATH = "I:\\LinkedU\\2018Project353\\LinkedU\\src\\java\\misc\\hd2017.csv";
+    private static final String SAMPLE_CSV_FILE_PATH = "I:\\NetBeansApps\\2018Project353\\LinkedU\\src\\java\\misc\\hd2017.csv";
     private static Connection DBConn;
     
     

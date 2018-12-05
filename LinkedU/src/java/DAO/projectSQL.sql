@@ -74,6 +74,9 @@ CREATE TABLE university(
 -- alter table university drop CONSTRAINT university_profileId_pk;
 -- alter table university drop column profileId;
 -- alter table universityBridge drop column profileId;
+-- alter table university add column profileId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1);
+-- alter table university add CONSTRAINT university_profileId_Pk PRIMARY key (profileId)
+--     references university(profileId);
 -- alter table universityBridge add column profileId Integer;
 -- alter table universityBridge add CONSTRAINT universityBridge_profileId_fk foreign key (profileId)
 --     references university(profileId);
@@ -154,6 +157,18 @@ CREATE TABLE commentList(
         REFERENCES comments(commentId),
     CONSTRAINT commentList_postId_fk FOREIGN KEY (postId)
         REFERENCES posts(postId));
+
+CREATE TABLE appointment(
+    appointmentId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    studentId INTEGER,
+    universityId INTEGER,
+    appntDate VARCHAR(28),
+    CONSTRAINT appointmentId_pk PRIMARY KEY(appointmentId),
+    CONSTRAINT appoinment_studentId_fk FOREIGN KEY(studentId)
+        REFERENCES STUDENT(PROFILEID),
+     CONSTRAINT appoinment_universityId_fk FOREIGN KEY(universityId)
+        REFERENCES UNIVERSITY (PROFILEID)    
+);
 
 CREATE TABLE ShowcaseUniversity(
 	ShowcaseID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),

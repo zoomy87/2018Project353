@@ -304,8 +304,42 @@ public class UserDAO implements DAO {
         {
             Connection DBConn= DBName.connect2DB();
             //String type = file.getFileName().substring(file.getFileName().indexOf("."));
-            String insert = "SELECT * FROM ITKSTU.USERS WHERE LOWER(USERNAME) LIKE LOWER(?)"
-                    + "ORDER BY ASC";
+            String insert = "SELECT * FROM ITKSTU.USERS WHERE LOWER(USERNAME) LIKE LOWER(?) ORDER BY username ASC";
+                    
+            log.info(insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert);
+            stmt.setString(1, "%"+id+"%");
+           
+            ResultSet rs= stmt.executeQuery();
+            log.info("inside SearchById");
+            while (rs.next())
+            {
+                User i= new User();
+                i.setUsername(rs.getString("username"));
+                
+                list.add(i);
+            }
+
+
+            
+
+            DBConn.close();
+        } 
+        catch (SQLException e)
+        {
+            log.severe(e.getMessage());
+        }
+        return list;
+
+    }
+    
+    public ArrayList searchByIdDESC(String id) {
+        ArrayList<User> list= new ArrayList<>();
+        try
+        {
+            Connection DBConn= DBName.connect2DB();
+            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
+            String insert = "SELECT * FROM ITKSTU.USERS WHERE LOWER(USERNAME) LIKE LOWER(?) ORDER BY username DESC";
                     
             log.info(insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);

@@ -33,7 +33,7 @@ public class SearchController {
         log.info(searchTopic);
         searchResults= userDAO.searchById(searchTopic);
         
-        return "SearchResults.xhtml";
+        return "SearchResults?redirect=true";
     }
 
     public String getSearchTopic() {
@@ -55,9 +55,16 @@ public class SearchController {
      public String searchUserIdASC(){
         UserDAO userDAO= new UserDAO();
         log.info(searchTopic);
-        searchResults= userDAO.searchById(searchTopic);
+        searchResults= userDAO.searchByIdASC(searchTopic);
         
-        return "SearchResults.xhtml";
+        return "SearchResults?redirect=true";
+    }
+      public String searchUserIdDESC(){
+        UserDAO userDAO= new UserDAO();
+        log.info(searchTopic);
+        searchResults= userDAO.searchByIdDESC(searchTopic);
+        
+        return "SearchResults?redirect=true";
     }
 
 }

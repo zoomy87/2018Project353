@@ -39,7 +39,6 @@
                         <li><a href="map.xhtml">School Map</a></li>
                         <li><a href="#">Page 2</a></li>
                     </ul>
-
                     <h:form class="navbar-form navbar-right">
                         <div class="form-group">
                             <p:inputText id="searchInput" class="form-control" placeholder="Search" value="#{searchController.searchTopic}"/>
@@ -47,7 +46,7 @@
                         <p:commandButton title="Search" class="btn btn-default" action="#{searchController.searchUserId()}"/>
                     </h:form>
                 </div>
-            </nav>    
+            </nav>
 
 
             <div class="row" id="profilebar">
@@ -83,12 +82,15 @@
                                 Results Displayed
                             </f:facet>
                             <p:commandLink action="#{profileController.goToProfile}" ajax="false">
-                                
                                 <p:column headerText="Sort" sortBy="#{name.username}">
                                     <h:outputText value="#{name.username}" />
                                 </p:column>
                             </p:commandLink>
                         </p:dataList>
+                    </h:form>
+                    <h:form>
+                        <p:commandButton action="#{searchController.searchUserIdASC()}" value="Asc" />
+                        <p:commandButton action="#{searchController.searchUserIdDESC()}" value="Desc"  />
                     </h:form>
                 </div>
             </div>

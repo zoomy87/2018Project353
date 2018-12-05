@@ -74,6 +74,9 @@ CREATE TABLE university(
 -- alter table university drop CONSTRAINT university_profileId_pk;
 -- alter table university drop column profileId;
 -- alter table universityBridge drop column profileId;
+-- alter table university add column profileId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1);
+-- alter table university add CONSTRAINT university_profileId_Pk PRIMARY key (profileId)
+--     references university(profileId);
 -- alter table universityBridge add column profileId Integer;
 -- alter table universityBridge add CONSTRAINT universityBridge_profileId_fk foreign key (profileId)
 --     references university(profileId);
@@ -155,15 +158,27 @@ CREATE TABLE commentList(
     CONSTRAINT commentList_postId_fk FOREIGN KEY (postId)
         REFERENCES posts(postId));
 
+CREATE TABLE appointment(
+    appointmentId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    studentId INTEGER,
+    universityId INTEGER,
+    appntDate VARCHAR(28),
+    CONSTRAINT appointmentId_pk PRIMARY KEY(appointmentId),
+    CONSTRAINT appoinment_studentId_fk FOREIGN KEY(studentId)
+        REFERENCES STUDENT(PROFILEID),
+     CONSTRAINT appoinment_universityId_fk FOREIGN KEY(universityId)
+        REFERENCES UNIVERSITY (PROFILEID)    
+);
+
 CREATE TABLE ShowcaseUniversity(
 	ShowcaseID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
 	UniversityName VARCHAR(100),
-    ImageName BLOB,
+    ImageName VARCHAR(50),
     IsShowCase CHAR(1),
     CONSTRAINT showcaseUniversity_showcaseID_pk PRIMARY KEY (ShowcaseID));
 	
 	
-	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) SELECT * FROM Openrowset(BULK 'I:\showcaseImages\harvard.jpg',SINGLE_BLOB) AS ImageName;
+	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) VALUES ('Harvard University','harvard.png','1');
 	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) VALUES ('Princeton University','princeton.png','1');
 	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) VALUES ('Illinois State University','ISU1.jpg','0');
 	INSERT into ShowcaseUniversity (UniversityName,ImageName,IsShowCase) VALUES ('University of Illinois Chicago','UIC.png','0');
@@ -193,4 +208,3 @@ INSERT INTO USERS
 
 INSERT INTO USERS
       VALUES ('princeton', 'princeton', 'princeton', 'princeton university', 'EMAIL', '', '', 'University',1,'0');
-		

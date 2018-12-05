@@ -52,5 +52,12 @@ public class SearchController {
         this.searchResults = searchResults;
     }
     
-    
+     public String searchUserIdASC(){
+        UserDAO userDAO= new UserDAO();
+        log.info(searchTopic);
+        searchResults= userDAO.searchById(searchTopic);
+        
+        return "SearchResults.xhtml";
+    }
+
 }

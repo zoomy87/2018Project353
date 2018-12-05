@@ -83,10 +83,10 @@
                                 Results Displayed
                             </f:facet>
                             <p:commandLink action="#{profileController.goToProfile}" ajax="false">
+                                
                                 <p:column headerText="Sort" sortBy="#{name.username}">
                                     <h:outputText value="#{name.username}" />
                                 </p:column>
-
                             </p:commandLink>
                         </p:dataList>
                     </h:form>

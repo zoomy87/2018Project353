@@ -157,6 +157,25 @@
                             </div>
                         </div>
                     </div>
+                    
+                             <h:form>
+            <p:messages autoUpdate="true" />
+
+            <h1>Texting uni</h1>
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="cellPhoneCarrierChosen" value="Cell Phone Carrier:" />
+                <p:selectOneMenu id="cellPhoneCarrierChosen" value="#{sMSController.cellPhoneCarrierChosen}" style="width:190px">
+                    <f:selectItems value="#{sMSController.cellPhoneCarriers}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="phone" value="Phone:" />
+                <p:inputMask id="phone" value="#{sMSController.phone}" mask="(999) 999-9999"/>
+            </h:panelGrid>
+
+            <p:growl id="growl" life="2000" />
+
+            <p:commandButton value="Send Message" id="ajax" update="growl" actionListener="#{sMSController.buttonAction}" styleClass="ui-priority-primary" />
+        </h:form> 
 
                 </div>
                 <div class="col-md-4">

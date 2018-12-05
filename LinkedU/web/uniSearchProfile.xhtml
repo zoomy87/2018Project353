@@ -46,7 +46,16 @@
             </nav>
             <div class="row">
                 <div class="col-md-8">
-                    <h3 class="text-center"><p:graphicImage id="imageId" value="#{profileController.image}" height="150px" width="300px"/><br/><h:outputText value="#{profileController.uniSearchProfile.fName}" /></h3>
+                    <h3 class="text-center">
+                        <iframe
+                            width="400"
+                            height="300"
+                            frameborder="0" style="border:0"
+                            src="#{profileController.universityReturn(3)}"  allowfullscreen="true">
+                        </iframe>
+                        <br/>
+                        <h:outputText value="#{profileController.uniSearchProfile.fName}" />
+                    </h3>
                     <hr />
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">

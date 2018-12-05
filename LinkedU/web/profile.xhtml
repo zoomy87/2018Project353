@@ -35,12 +35,12 @@
                         <li><a href="map.xhtml">School Map</a></li>
                         <li><a href="#">Page 2</a></li>
                     </ul>
-                    <form class="navbar-form navbar-right" action="/action_page.php">
+                    <h:form class="navbar-form navbar-right">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search"/>
+                            <p:inputText id="searchInput" class="form-control" placeholder="Search" value="#{searchController.searchTopic}"/>
                         </div>
-                        <button type="submit" class="btn btn-default">Search</button>
-                    </form>
+                        <p:commandButton title="Search" class="btn btn-default" action="#{searchController.searchUserId()}"/>
+                    </h:form>
                 </div>
             </nav>
             <div class="row">
@@ -120,11 +120,11 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <h1>ADS GO HERE</h1><br/>
-                    <h1>ADS GO HERE</h1><br/>
-                    <h1>ADS GO HERE</h1><br/>
-                    <h1>ADS GO HERE</h1><br/>
-                    <h1>ADS GO HERE</h1><br/>
+                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
+                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
+                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
+                    <h:outputText value="#{showcaseUniversityController.randomShowcase()}" /><br/>
+                    <iframe width="560" height="315" src="#{profileController.universityVideoReturn(1)}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
                     <h1>ADS GO HERE</h1><br/>
                     <h1>ADS GO HERE</h1><br/>
                     <h1>ADS GO HERE</h1><br/>

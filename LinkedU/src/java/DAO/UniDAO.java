@@ -42,16 +42,16 @@ public class UniDAO implements DAO {
     }
 
     @Override
-    public Object getOne(Object id) {
+    public Object getOne(Object username) {
         String university = "";
         try {
             Connection DBConn = DBName.connect2DB();
             //String type = file.getFileName().substring(file.getFileName().indexOf("."));
-            String insert = "Select UniversityName From ShowcaseUniversity Where showcaseid= ? ";
+            String insert = "SELECT universityname FROM showcaseuniversity Where username = ? ";
 
             //System.out.println("IMAGEDAOIMPL: " + insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);
-            stmt.setString(1, (String) id);
+            stmt.setString(1, (String) username);
 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -65,7 +65,6 @@ public class UniDAO implements DAO {
             System.err.println(e.getMessage());
         }
         return university;
-
     }
 
     @Override

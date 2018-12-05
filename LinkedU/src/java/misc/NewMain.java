@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-
+*/
 package misc;
 
 import DAO.DBName;
@@ -30,10 +30,10 @@ import java.util.logging.Logger;
  *
  * @author ericz
  */
-/*
+
 public class NewMain {
 
-    private static final String SAMPLE_CSV_FILE_PATH = "C:\\Users\\ericz\\OneDrive\\Documents\\docs\\hd2017.csv";
+    private static final String SAMPLE_CSV_FILE_PATH = "I:\\LinkedU\\2018Project353\\LinkedU\\src\\java\\misc\\hd2017.csv";
     private static Connection DBConn;
     
     
@@ -116,4 +116,4 @@ public class NewMain {
     }
     
 }
-   */
+   

@@ -102,11 +102,11 @@ public class ProfileController {
             
     }
 
-    public String universityReturn(String uniId) {
+    public String universityReturn(String username) {
         String src;
         String school;
         DAO uniDB = new UniDAO();
-        src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBfcRh_4s3ZdcGnTdhGEWnSjyghyoh7vc0&q=" + uniDB.getOne(uniId);
+        src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBfcRh_4s3ZdcGnTdhGEWnSjyghyoh7vc0&q=" + username;
         return src;
     }
 

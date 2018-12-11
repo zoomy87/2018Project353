@@ -25,12 +25,11 @@ public class UserDAO implements DAO {
 
     private static final Logger log = Logger.getLogger(UserDAO.class.getName());
 
-   
     @Override
     public int create(Object User, String username) {
-        User user= (User)User;
+        User user = (User) User;
         int rowCount = 0;
-        
+
         try {
             Connection DBConn = DBName.connect2DB();
 
@@ -47,7 +46,7 @@ public class UserDAO implements DAO {
             pstmt.setString(8, user.getUserType());
 
             rowCount = pstmt.executeUpdate();
-            log.info("insert string =" + insertString +"rowCount: "+rowCount);
+            log.info("insert string =" + insertString + "rowCount: " + rowCount);
             DBConn.close();
         } catch (SQLException ex) {
             log.log(Level.SEVERE, null, ex);
@@ -55,39 +54,33 @@ public class UserDAO implements DAO {
         return rowCount;
     }
 
-   @Override
+    @Override
     public ArrayList getAll(String query) {
-        ArrayList<User> list= new ArrayList<>();
-        try
-        {
-            Connection DBConn= DBName.connect2DB();
+        ArrayList<User> list = new ArrayList<>();
+        try {
+            Connection DBConn = DBName.connect2DB();
             //String type = file.getFileName().substring(file.getFileName().indexOf("."));
             String insert = "SELECT * FROM USERS";
-                    
+
             log.info(insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);
             stmt.setString(1, query);
-           
-            ResultSet rs= stmt.executeQuery();
-            while (rs.next())
-            {
-                User i= new User();
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                User i = new User();
                 i.setUsername(rs.getString("username"));
-                
+
                 list.add(i);
             }
 
 //                userController.setProfilePictureId(imgID, username);
-                //System.out.println(imgID);
-            
-
+            //System.out.println(imgID);
             DBConn.close();
-        } 
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             log.severe(e.getMessage());
         }
-        return list;    
+        return list;
     }
 
     @Override
@@ -100,7 +93,7 @@ public class UserDAO implements DAO {
         Statement stmt;
         ResultSet rs;
         String query;
-        
+
         try {
             Connection DBConn = DBName.connect2DB();
             stmt = DBConn.createStatement();
@@ -117,16 +110,16 @@ public class UserDAO implements DAO {
         return userExist;
     }
 
-    
     public boolean checkUserID(User user) {
         boolean userExist = false;
         Statement stmt;
         ResultSet rs;
         String query;
         try {
-            Connection DBConn = DBName.connect2DB(); {
+            Connection DBConn = DBName.connect2DB();
+            {
                 stmt = DBConn.createStatement();
-                query = "SELECT * FROM users WHERE userid ='" + user.getUsername()+ "'";
+                query = "SELECT * FROM users WHERE userid ='" + user.getUsername() + "'";
                 rs = stmt.executeQuery(query);
                 if (rs.next()) {
                     userExist = true;
@@ -167,7 +160,7 @@ public class UserDAO implements DAO {
         }
         return retVal;
     }
-    
+
     @Override
     public User getOneUsername(Object searchUsername) {
         String username = (String) searchUsername;
@@ -197,7 +190,7 @@ public class UserDAO implements DAO {
         }
         return retVal;
     }
-    
+
     @Override
     public Profile getProfileUser(Object username) {
         String usernameQuery = (String) username;
@@ -242,7 +235,7 @@ public class UserDAO implements DAO {
         }
         return retVal;
     }
-    
+
     @Override
     public Profile getProfileUni(Object username) {
         String usernameQuery = (String) username;
@@ -273,7 +266,6 @@ public class UserDAO implements DAO {
         return retVal;
     }
 
-    
     public String getPass(String email) {
         String retVal = "";
 
@@ -296,7 +288,7 @@ public class UserDAO implements DAO {
 
     @Override
     public int update(Object aUser, String username) {
-        User user= (User) aUser;
+        User user = (User) aUser;
         int rowCount = 0;
         try {
             Connection DBConn = DBName.connect2DB();
@@ -314,7 +306,7 @@ public class UserDAO implements DAO {
             pstmt.setString(8, user.getActiveId());
 
             rowCount = pstmt.executeUpdate();
-            log.info("insert string =" + insertString +"rowCount: "+rowCount);
+            log.info("insert string =" + insertString + "rowCount: " + rowCount);
             DBConn.close();
         } catch (SQLException ex) {
             log.log(Level.SEVERE, null, ex);
@@ -324,41 +316,87 @@ public class UserDAO implements DAO {
 
     @Override
     public ArrayList searchById(String id) {
-        ArrayList<User> list= new ArrayList<>();
-        try
-        {
-            Connection DBConn= DBName.connect2DB();
+        ArrayList<User> list = new ArrayList<>();
+        try {
+            Connection DBConn = DBName.connect2DB();
             //String type = file.getFileName().substring(file.getFileName().indexOf("."));
             String insert = "SELECT * FROM ITKSTU.USERS WHERE LOWER(USERNAME) LIKE LOWER(?)";
-                    
+
             log.info(insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);
-            stmt.setString(1, "%"+id+"%");
-           
-            ResultSet rs= stmt.executeQuery();
+            stmt.setString(1, "%" + id + "%");
+
+            ResultSet rs = stmt.executeQuery();
             log.info("inside SearchById");
-            while (rs.next())
-            {
-                User i= new User();
+            while (rs.next()) {
+                User i = new User();
                 i.setUsername(rs.getString("username"));
-                
+
                 list.add(i);
             }
 
-
-            
-
             DBConn.close();
-        } 
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             log.severe(e.getMessage());
         }
         return list;
 
     }
-    
-    
-    
-    
+
+    public ArrayList searchByIdASC(String id) {
+        ArrayList<User> list = new ArrayList<>();
+        try {
+            Connection DBConn = DBName.connect2DB();
+            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
+            String insert = "SELECT * FROM ITKSTU.USERS WHERE LOWER(USERNAME) LIKE LOWER(?) ORDER BY username ASC";
+
+            log.info(insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert);
+            stmt.setString(1, "%" + id + "%");
+
+            ResultSet rs = stmt.executeQuery();
+            log.info("inside SearchById");
+            while (rs.next()) {
+                User i = new User();
+                i.setUsername(rs.getString("username"));
+
+                list.add(i);
+            }
+
+            DBConn.close();
+        } catch (SQLException e) {
+            log.severe(e.getMessage());
+        }
+        return list;
+
+    }
+
+    public ArrayList searchByIdDESC(String id) {
+        ArrayList<User> list = new ArrayList<>();
+        try {
+            Connection DBConn = DBName.connect2DB();
+            //String type = file.getFileName().substring(file.getFileName().indexOf("."));
+            String insert = "SELECT * FROM ITKSTU.USERS WHERE LOWER(USERNAME) LIKE LOWER(?) ORDER BY username DESC";
+
+            log.info(insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert);
+            stmt.setString(1, "%" + id + "%");
+
+            ResultSet rs = stmt.executeQuery();
+            log.info("inside SearchById");
+            while (rs.next()) {
+                User i = new User();
+                i.setUsername(rs.getString("username"));
+
+                list.add(i);
+            }
+
+            DBConn.close();
+        } catch (SQLException e) {
+            log.severe(e.getMessage());
+        }
+        return list;
+
+    }
+
 }

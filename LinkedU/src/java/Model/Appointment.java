@@ -46,4 +46,5 @@ public class Appointment {
     public void setId(int id) {
         this.id = id;
     }
+    
 }

@@ -18,11 +18,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <div class="container">
             <nav class="navbar navbar-inverse">
-              <div class="container-fluid">
-                <div class="navbar-header">
-                  <a class="navbar-brand" href="home.xhtml">LinkedU</a>
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="home.xhtml">LinkedU</a>
+                    </div>
                 </div>
-              </div>
             </nav>
             <div class="row">
                 <div class="col-md-4"></div>
@@ -77,8 +77,8 @@
                             <h:inputText class="form-control input-sm" id="userType" value="#{loginController.model.userType}" />
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <h:commandButton class="btn btn-default btn-block btn-sm btn-info" value="Submit" action="#{loginController.createUser()}"  />
+                            <div class="col-md-6">
+                                <h:commandButton class="btn btn-default btn-block btn-sm btn-success" value="Submit" action="#{loginController.createUser()}"  />
                             </div>
                         </div>
                     </h:form>

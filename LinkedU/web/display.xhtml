@@ -7,7 +7,33 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-         <p:graphicImage id="imageId" value="#{profileController.image}"/>
+        <div class="container">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="home.xhtml">LinkedU</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class=" active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Me <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="profile.xhtml">Profile</a></li>
+                                <li><a href="account.xhtml">Account</a></li>
+                                <li><h:form><p:commandButton title="Logout" class="btn btn-default btn-block btn-sm btn-danger" action="#{loginController.logout()}"/></h:form></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h:form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <p:inputText placeholder="Search" id="searchInput" class="form-control" value="#{searchController.searchTopic}"/>
+                        </div>
+                        <p:commandButton title="Search" class="btn btn-default" action="#{searchController.searchUserId()}"/>
+                    </h:form>
+                </div>
+            </nav>
+            <div class="row">
+                <p:graphicImage id="imageId" value="#{profileController.image}"/>
+            </div>
+        </div>
     </h:body>
 </html>
 

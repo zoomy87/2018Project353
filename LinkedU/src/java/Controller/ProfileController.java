@@ -73,21 +73,21 @@ public class ProfileController {
         return "searchError.xhtml?faces-redirect=true";
     }
     
-    public void gotoProfile(String searchUsername){
+    public void gotoProfile(String loggedInUsername){
         UserDAO searchUserDao = new UserDAO();
-        searchUser = searchUserDao.getOneUsername(searchUsername);
+        searchUser = searchUserDao.getOneUsername(loggedInUsername);
         
         if(searchUser.getUserType().toLowerCase().equals("university")){
             uniSearchProfile = new Profile();
-            uniSearchProfile = DAOImpl.getProfileUni(searchUsername);
+            uniSearchProfile = DAOImpl.getProfileUni(loggedInUsername);
             FacesContext fc = FacesContext.getCurrentInstance();
             ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler) fc.getApplication().getNavigationHandler();
             nav.performNavigation("uniSearchProfile.xhtmlfaces-redirect=true");
         }
         
         if(searchUser.getUserType().toLowerCase().equals("student")){
-            userSearchProfile = new Profile();
-            userSearchProfile = DAOImpl.getProfileUser(searchUsername);
+//            userSearchProfile = new Profile();
+            DAOProfile = DAOImpl.getProfileUser(loggedInUsername);
             FacesContext fc = FacesContext.getCurrentInstance();
             ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler) fc.getApplication().getNavigationHandler();
             nav.performNavigation("userSearchProfile.xhtmlfaces-redirect=true");
@@ -104,6 +104,7 @@ public class ProfileController {
     }
     
     public ProfileController(){
+//        DAOImpl = new UserDAO();
         image= new Image();
         user = new User();
         DAOProfile = new Profile();

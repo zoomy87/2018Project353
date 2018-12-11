@@ -21,6 +21,7 @@ import Model.Image;
 import Model.Profile;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.event.PhaseId;
 import org.primefaces.model.DefaultStreamedContent;
@@ -55,7 +56,6 @@ public class ProfileController {
     
     public String retrieveProfile(String searchUsername){
         UserDAO searchUserDao = new UserDAO();
-        System.out.println("searchUsername is: " + searchUsername);
         searchUser = searchUserDao.getOneUsername(searchUsername);
         
         if(searchUser.getUserType().toLowerCase().equals("university")){
@@ -71,6 +71,27 @@ public class ProfileController {
             return "userSearchProfile.xhtml?faces-redirect=true";
         }
         return "searchError.xhtml?faces-redirect=true";
+    }
+    
+    public void gotoProfile(String searchUsername){
+        UserDAO searchUserDao = new UserDAO();
+        searchUser = searchUserDao.getOneUsername(searchUsername);
+        
+        if(searchUser.getUserType().toLowerCase().equals("university")){
+            uniSearchProfile = new Profile();
+            uniSearchProfile = DAOImpl.getProfileUni(searchUsername);
+            FacesContext fc = FacesContext.getCurrentInstance();
+            ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler) fc.getApplication().getNavigationHandler();
+            nav.performNavigation("uniSearchProfile.xhtmlfaces-redirect=true");
+        }
+        
+        if(searchUser.getUserType().toLowerCase().equals("student")){
+            userSearchProfile = new Profile();
+            userSearchProfile = DAOImpl.getProfileUser(searchUsername);
+            FacesContext fc = FacesContext.getCurrentInstance();
+            ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler) fc.getApplication().getNavigationHandler();
+            nav.performNavigation("userSearchProfile.xhtmlfaces-redirect=true");
+        }
     }
     
     public String uniProfile(){

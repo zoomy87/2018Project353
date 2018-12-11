@@ -46,28 +46,24 @@
             </nav>
             <div class="row">
                 <div class="col-md-2">
-                    <h3 class="text-center"><p:graphicImage id="imageId" value="#{profileController.image}" height="50px" width="75px"/><br/><h:outputText value="#{profileController.DAOProfile.fName}" />, <h:outputText value="#{profileController.DAOProfile.lName}" /></h3>
+                    <h3 class="text-center"><p:graphicImage id="imageId" value="#{profileController.image}" height="50px" width="75px"/><br/><h:outputText value="#{loginController.DAOUser.username}" /></h3>
                     <hr />
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
                                         About Me</a>
                                 </h4>
                             </div>
-                            <div id="collapse1" class="panel-collapse collapse in">
+                            <div id="collapse" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <label for="exampleInputEmail1">User ID</label>:
-                                    <h:outputText value="#{profileController.DAOProfile.username}" /><br/>
+                                    <label for="exampleInputEmail1">First Name</label>:
+                                    <h:outputText value="#{loginController.DAOUser.fName}" /><br/>
+                                    <label for="exampleInputEmail1">Last Name</label>:
+                                    <h:outputText value="#{loginController.DAOUser.getlName()}" /><br/>
                                     <label for="exampleInputEmail1">Email</label>:
-                                    <h:outputText value="#{profileController.DAOProfile.email}" /><br/>
-                                    <label for="exampleInputEmail1">DOB</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.dateOfBirth}" /><br/>
-                                    <label for="exampleInputEmail1">Height</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.height}" /><br/>
-                                    <label for="exampleInputEmail1">Weight (lbs)</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.weight}" /><br/>
+                                    <h:outputText value="#{loginController.DAOUser.getEmail()}" /><br/>
 
                                 </div>
                             </div>
@@ -76,9 +72,69 @@
                 </div>
                 <div class="col-md-8">
                     <h1>HOME</h1>
+                    <div class="row">
+                        <div class="panel-group" id="accordion1">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion1" href="#collapse1">
+                                            University of Chicago</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        Great school, great people join UIC today!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="panel-group" id="accordion2">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2">
+                                            Illinois State University</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        REDBIRDS!! CAW!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="panel-group" id="accordion3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion3" href="#collapse3">
+                                            Florida</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse3" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Go to Florida University!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-2">
-                    <h1>ADS</h1>
+                    <h3>Uni Ads</h3>
+                    <h3>Stu Ads</h3>
+                    <h3>Uni Ads</h3>
+                    <h3>Stu Ads</h3>
+                    <h3>Uni Ads</h3>
+                    <h3>Stu Ads</h3>
+                    <h3>Uni Ads</h3>
+                    <h3>Stu Ads</h3>
                 </div>
             </div>
         </div>

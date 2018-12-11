@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import Controller.UserController;
 import Model.Image;
 import Model.Profile;
 import Model.User;

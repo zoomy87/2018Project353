@@ -21,6 +21,7 @@ import Model.Image;
 import Model.Profile;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.event.PhaseId;
 import org.primefaces.model.DefaultStreamedContent;
 import javax.servlet.http.HttpSession;
@@ -31,6 +32,7 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean
 @SessionScoped
+
 public class ProfileController {
 
     private UploadedFile file;
@@ -45,8 +47,6 @@ public class ProfileController {
     Profile uniSearchProfile;
     Profile userSearchProfile;
     UserDAO DAOImpl;
-    
-
     
     public void retrieveProfile(){
         DAOImpl = new UserDAO();
@@ -71,6 +71,15 @@ public class ProfileController {
             return "userSearchProfile.xhtml?faces-redirect=true";
         }
         return "searchError.xhtml?faces-redirect=true";
+    }
+    
+    public String uniProfile(){
+        
+        if(DAOProfile.getUserType().toLowerCase().equals("university")){
+            return "uniSearchProfile.xhtml?faces-redirect=true";
+        }
+        
+        return "";
     }
     
     public ProfileController(){

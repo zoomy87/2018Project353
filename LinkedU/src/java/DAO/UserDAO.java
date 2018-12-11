@@ -136,6 +136,7 @@ public class UserDAO implements DAO {
     public User getOne(Object email) {
         String emailQuery = (String) email;
         User retVal = null;
+//        User retVal = new User();
 
         try {
             Connection DBConn = DBName.connect2DB();
@@ -153,6 +154,7 @@ public class UserDAO implements DAO {
                 retVal.setSecQues(rs.getString("securityquestion"));
                 retVal.setSecAns(rs.getString("securityanswer"));
                 retVal.setEmail(rs.getString("email"));
+                retVal.setUserType(rs.getString("usertype"));
                 retVal.setActiveId(retVal.getUsername());
             }
         } catch (SQLException ex) {

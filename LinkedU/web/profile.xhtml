@@ -18,6 +18,7 @@
     <h:body>
         <f:metadata>
             <f:event type="preRenderView" listener="#{loginController.getIsLoggedIn()}" />
+            <f:event type="preRenderView" listener="#{profileController.uniProfile()}" />
         </f:metadata>
         <div class="container">
             <nav class="navbar navbar-inverse">
@@ -48,7 +49,7 @@
                 <div class="col-md-8">
                     <h3 class="text-center">
                         <p:graphicImage id="imageId" value="#{profileController.image}" height="150px" width="300px"/><br/>
-                        <h:outputText value="#{profileController.DAOProfile.fName}" />, <h:outputText value="#{profileController.DAOProfile.lName}" />
+                        <h:outputText value="#{loginController.DAOUser.username}" />
                     </h3>
                     <hr />
                     <div class="panel-group" id="accordion">
@@ -63,14 +64,10 @@
                                 <div class="panel-body">
                                     <label for="exampleInputEmail1">User ID</label>:
                                     <h:outputText value="#{profileController.DAOProfile.username}" /><br/>
-                                    <label for="exampleInputEmail1">Email</label>:
-                                    <h:outputText value="#{profileController.DAOProfile.email}" /><br/>
-                                    <label for="exampleInputEmail1">DOB</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.dateOfBirth}" /><br/>
-                                    <label for="exampleInputEmail1">Height</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.height}" /><br/>
-                                    <label for="exampleInputEmail1">Weight (lbs)</label>: 
-                                    <h:outputText value="#{profileController.DAOProfile.weight}" /><br/>
+                                    <label for="exampleInputEmail1">First Name</label>:
+                                    <h:outputText value="#{profileController.DAOProfile.fName}" /><br/>
+                                    <label for="exampleInputEmail1">Last Name</label>: 
+                                    <h:outputText value="#{profileController.DAOProfile.lName}" /><br/>
 
                                 </div>
                             </div>

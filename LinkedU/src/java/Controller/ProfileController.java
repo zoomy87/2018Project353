@@ -31,7 +31,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author ericz
  */
-@ManagedBean
+@ManagedBean(name="profileController")
 @SessionScoped
 
 public class ProfileController {
@@ -42,14 +42,15 @@ public class ProfileController {
     private final LoginController loginSession;
     private final FacesContext facesContext;
     private final HttpSession session;
-    User user;
-    User searchUser;
-    Profile DAOProfile;
-    Profile uniSearchProfile;
-    Profile userSearchProfile;
-    UserDAO DAOImpl;
+    private User user;
+    private User searchUser;
+    private Profile DAOProfile;
+    private Profile uniSearchProfile;
+    private Profile userSearchProfile;
+    private UserDAO DAOImpl;
     
     public void retrieveProfile(){
+        System.out.println("retrieveProfile");
         DAOImpl = new UserDAO();
         DAOProfile = DAOImpl.getProfileUser(user.getUsername());
     }

@@ -144,12 +144,15 @@
                             <div id="collapse4" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <h:form>
-                                        <p:calendar id="datetime" value="#{universityController.date}" stepMinute="15" pattern="MM/dd/yyyy h:mm a"/>
+                                        <label>Username: </label>&#xA0;
+                                        <p:inputText value="#{appointmentController.username}"/><br/><br/>
+                                        <label>&#xA0;&#xA0;&#xA0;Date: </label>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;
+                                        <p:calendar id="datetime" value="#{appointmentController.date}" stepMinute="15" pattern="MM/dd/yyyy h:mm a"/>
                                         <br></br>
+                                        
 
-
-                                        <h:outputText value="#{universityController.dateString}"/><br/>
-                                        <p:commandButton value="Date Submit" ajax="false" action="#{universityController.makeAppointment()}"/>
+                                        <h:outputText value="#{appointmentController.dateString}"/><br/>
+                                        <p:commandButton value="Date Submit" ajax="false" action="#{appointmentController.makeAppointment()}"/>
                                     </h:form>
                                 </div>
                             </div>

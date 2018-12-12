@@ -33,12 +33,21 @@ public class Profile {
     private String certification;
     private String essay;
     private String hobbies;
+    private int profileId;
     
     private String street;
     private String city;
     private String confirmPassword;
     private String activeId;
     private String activeEmail;
+
+    public int getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(int profileId) {
+        this.profileId = profileId;
+    }
 
     public String getUsername() {
         return username;

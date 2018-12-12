@@ -66,6 +66,7 @@ public class LoginController {
     }
 
     public String authenticate() {
+        System.out.println("authenticate");
         DAOImpl = new UserDAO();
         String pass = DAOImpl.getPass(model.getEmail());
         String retVal = "";
@@ -89,6 +90,7 @@ public class LoginController {
     }
 
     public void retriveUser() {
+        System.out.println("retriveUser");
         DAOImpl = new UserDAO();
         DAOUser = DAOImpl.getOne(model.getEmail());
     }

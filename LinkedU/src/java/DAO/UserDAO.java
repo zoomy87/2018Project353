@@ -207,6 +207,7 @@ public class UserDAO implements DAO {
             ResultSet rs = stmt.executeQuery(insertString);
             if (rs.next()) {
                 retVal = new Profile();
+                retVal.setProfileId(rs.getInt("profileid"));
                 retVal.setUsername(rs.getString("username"));
                 retVal.setPassword(rs.getString("password"));
                 retVal.setfName(rs.getString("firstname"));
@@ -252,6 +253,7 @@ public class UserDAO implements DAO {
             ResultSet rs = stmt.executeQuery(insertString);
             if (rs.next()) {
                 retVal = new Profile();
+                retVal.setProfileId(rs.getInt("profileid"));
                 retVal.setUsername(rs.getString("username"));
                 retVal.setPassword(rs.getString("password"));
                 retVal.setfName(rs.getString("firstname"));

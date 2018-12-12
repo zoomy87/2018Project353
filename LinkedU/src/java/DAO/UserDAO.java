@@ -53,6 +53,42 @@ public class UserDAO implements DAO {
         }
         return rowCount;
     }
+    
+    public int createProfile(Object Profile) {
+        Profile profile = (Profile) Profile;
+        int rowCount = 0;
+
+        try {
+            Connection DBConn = DBName.connect2DB();
+
+            String insertString;
+            insertString = "INSERT INTO student (profileid, dateofbirth, height, weight, address, country, zipcode, phone, school, endyear, sat, act, psat, certification, essay, username, hobbies) VALUES (default,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement pstmt = DBConn.prepareStatement(insertString);
+            pstmt.setString(1, profile.getDateOfBirth());
+            pstmt.setString(2, profile.getHeight());
+            pstmt.setString(3, profile.getWeight());
+            pstmt.setString(4, profile.getAddress());
+            pstmt.setString(5, profile.getCountry());
+            pstmt.setString(6, profile.getZipcode());
+            pstmt.setString(7, profile.getPhone());
+            pstmt.setString(8, profile.getSchool());
+            pstmt.setString(9, profile.getEndYear());
+            pstmt.setString(10, profile.getSat());
+            pstmt.setString(11, profile.getAct());
+            pstmt.setString(12, profile.getPsat()); 
+            pstmt.setString(13, profile.getCertification());
+            pstmt.setString(14, profile.getEssay());
+            pstmt.setString(15, profile.getUsername());
+            pstmt.setString(16, profile.getHobbies());
+
+            rowCount = pstmt.executeUpdate();
+            log.info("Profile insert string = " + insertString + " rowCount: " + rowCount);
+            DBConn.close();
+        } catch (SQLException ex) {
+            log.log(Level.SEVERE, null, ex);
+        }
+        return rowCount;
+    }
 
     @Override
     public ArrayList getAll(String query) {
@@ -216,17 +252,17 @@ public class UserDAO implements DAO {
                 retVal.setSecAns(rs.getString("securityanswer"));
                 retVal.setUserType(rs.getString("usertype"));
                 retVal.setDateOfBirth(rs.getString("dateofbirth"));
-                retVal.setHeight(rs.getInt("height"));
-                retVal.setWeight(rs.getInt("weight"));
+                retVal.setHeight(rs.getString("height"));
+                retVal.setWeight(rs.getString("weight"));
                 retVal.setAddress(rs.getString("address"));
                 retVal.setCountry(rs.getString("country"));
                 retVal.setZipcode(rs.getString("zipcode"));
                 retVal.setPhone(rs.getString("phone"));
                 retVal.setSchool(rs.getString("school"));
-                retVal.setEndYear(rs.getInt("endyear"));
-                retVal.setSat(rs.getInt("sat"));
-                retVal.setAct(rs.getInt("act"));
-                retVal.setPsat(rs.getInt("psat"));
+                retVal.setEndYear(rs.getString("endyear"));
+                retVal.setSat(rs.getString("sat"));
+                retVal.setAct(rs.getString("act"));
+                retVal.setPsat(rs.getString("psat"));
                 retVal.setCertification(rs.getString("certification"));
                 retVal.setEssay(rs.getString("essay"));
                 retVal.setHobbies(rs.getString("hobbies"));

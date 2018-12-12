@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <h:head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+
+    </h:head>
+
+    <h:body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <div class="container">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="home.xhtml">LinkedU</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h3 class="text-center">Sign Up</h3>
+                    <hr />
+                    <h:form id="signUp">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Birthday</label>
+                            <h:inputText class="form-control input-sm" id="birthdate" value="#{loginController.profileModel.dateOfBirth}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Height</label>
+                            <h:inputText class="form-control input-sm" id="height" value="#{loginController.profileModel.height}"> 
+                                
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Weight</label>
+                            <h:inputText class="form-control input-sm" id="weight" value="#{loginController.profileModel.weight}"> 
+                                
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Address</label>
+                            <h:inputText class="form-control input-sm" id="address" value="#{loginController.profileModel.address}"> 
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Country</label>
+                            <h:inputText class="form-control input-sm" id="country" value="#{loginController.profileModel.country}"> 
+                                <f:validateLength minimum="2" maximum="25"></f:validateLength>
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Zip Code</label>
+                            <h:inputText class="form-control input-sm" id="zipcode" value="#{loginController.profileModel.zipcode}"> 
+                                <f:validateLength minimum="2" maximum="25"></f:validateLength>
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Phone</label>
+                            <h:inputText class="form-control input-sm" id="phone" value="#{loginController.profileModel.phone}"> 
+                                <f:validateLength minimum="2" maximum="25"></f:validateLength>
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">School</label>
+                            <h:inputText class="form-control input-sm" id="school" value="#{loginController.profileModel.school}"> 
+                                <f:validateLength minimum="2" maximum="25"></f:validateLength>
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Graduation Date</label>
+                            <h:inputText class="form-control input-sm" id="graduation" value="#{loginController.profileModel.endYear}"> 
+                                <f:validateLength minimum="2" maximum="25"></f:validateLength>
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">SAT</label>
+                            <h:inputText class="form-control input-sm" id="sat" value="#{loginController.profileModel.sat}"> 
+                                
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">ACT</label>
+                            <h:inputText class="form-control input-sm" id="act" value="#{loginController.profileModel.act}"> 
+                                
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">PSAT</label>
+                            <h:inputText class="form-control input-sm" id="psat" value="#{loginController.profileModel.psat}"> 
+                                
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Certification</label>
+                            <h:inputText class="form-control input-sm" id="cert" value="#{loginController.profileModel.certification}"> 
+                                
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Essay</label>
+                            <h:inputText class="form-control input-sm" id="essay" value="#{loginController.profileModel.essay}"> 
+                                
+                            </h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Hobbies</label>
+                            <h:inputText class="form-control input-sm" id="hob" value="#{loginController.profileModel.hobbies}"> 
+                                
+                            </h:inputText>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h:commandButton class="btn btn-default btn-block btn-sm btn-success" value="Submit" action="#{loginController.createProfile()}"  />
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

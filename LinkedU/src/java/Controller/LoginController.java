@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import Model.User;
 import DAO.DAO;
 import DAO.UserDAO;
+import Model.Profile;
 import java.util.HashMap;
 import java.util.Map;
 import javax.faces.application.ConfigurableNavigationHandler;
@@ -29,6 +30,7 @@ public class LoginController {
 
     User model;
     User DAOUser;
+    Profile profileModel;
     
 //    @ManagedProperty("userDAO")
     UserDAO DAOImpl;
@@ -40,6 +42,14 @@ public class LoginController {
         FacesContext fc = FacesContext.getCurrentInstance();
         ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler) fc.getApplication().getNavigationHandler();
         nav.performNavigation("login.xhtml?faces-redirect=true");
+    }
+
+    public Profile getProfileModel() {
+        return profileModel;
+    }
+
+    public void setProfileModel(Profile profileModel) {
+        this.profileModel = profileModel;
     }
     
     public User getDAOUser() {
@@ -55,6 +65,7 @@ public class LoginController {
      */
     public LoginController() {
         model = new User();
+        profileModel = new Profile();
     }
 
     public User getModel() {
@@ -113,10 +124,22 @@ public class LoginController {
 
         if (!isUserID && !isEmail && isPasswordMatch) {
             DAOImpl.create(model, model.getUsername());
-            response = "echo.xhtml";
+            if(model.getUserType().toLowerCase().equals("student"))
+                response = "signupuser.xhtml";            
+            else
+                response = "echo.xhtml";
             System.out.println(model.getEmail());
-//            model.sendEmail();
         }
+
+        return response;
+    }
+    
+        public String createProfile() {
+        String response;
+        profileModel.setUsername(model.getUsername());
+        DAOImpl = new UserDAO();
+        DAOImpl.createProfile(profileModel);
+        response = "echo.xhtml";
 
         return response;
     }

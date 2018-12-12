@@ -19,17 +19,17 @@ public class Profile {
     private String secAns;
     private String userType;
     private String dateOfBirth;
-    private int height;
-    private int weight;
+    private String height;
+    private String weight;
     private String address;
     private String country;
     private String zipcode;
     private String phone;
     private String school;
-    private int endYear;
-    private int sat;
-    private int act;
-    private int psat;
+    private String endYear;
+    private String sat;
+    private String act;
+    private String psat;
     private String certification;
     private String essay;
     private String hobbies;
@@ -49,6 +49,54 @@ public class Profile {
         this.profileId = profileId;
     }
 
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getEndYear() {
+        return endYear;
+    }
+
+    public void setEndYear(String endYear) {
+        this.endYear = endYear;
+    }
+
+    public String getSat() {
+        return sat;
+    }
+
+    public void setSat(String sat) {
+        this.sat = sat;
+    }
+
+    public String getAct() {
+        return act;
+    }
+
+    public void setAct(String act) {
+        this.act = act;
+    }
+
+    public String getPsat() {
+        return psat;
+    }
+
+    public void setPsat(String psat) {
+        this.psat = psat;
+    }
+    
     public String getUsername() {
         return username;
     }
@@ -153,22 +201,6 @@ public class Profile {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
     public String getStreet() {
         return street;
     }
@@ -215,38 +247,6 @@ public class Profile {
 
     public void setSchool(String school) {
         this.school = school;
-    }
-
-    public int getEndYear() {
-        return endYear;
-    }
-
-    public void setEndYear(int endYear) {
-        this.endYear = endYear;
-    }
-
-    public int getSat() {
-        return sat;
-    }
-
-    public void setSat(int sat) {
-        this.sat = sat;
-    }
-
-    public int getAct() {
-        return act;
-    }
-
-    public void setAct(int act) {
-        this.act = act;
-    }
-
-    public int getPsat() {
-        return psat;
-    }
-
-    public void setPsat(int psat) {
-        this.psat = psat;
     }
 
     public String getCertification() {

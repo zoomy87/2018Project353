@@ -87,8 +87,7 @@ public class ProfileController {
         }
         
         if(searchUser.getUserType().toLowerCase().equals("student")){
-//            userSearchProfile = new Profile();
-            DAOProfile = DAOImpl.getProfileUser(loggedInUsername);
+            userSearchProfile = DAOImpl.getProfileUser(loggedInUsername);
             FacesContext fc = FacesContext.getCurrentInstance();
             ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler) fc.getApplication().getNavigationHandler();
             nav.performNavigation("userSearchProfile.xhtmlfaces-redirect=true");
